@@ -11,8 +11,6 @@
 		84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */; };
 		84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */; };
 		84010BD91A1C99D2009996A4 /* Clinic_Report_Table_CellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD51A1C99D2009996A4 /* Clinic_Report_Table_CellViewController.m */; };
-		84010BDE1A1C9A56009996A4 /* Holiday_Settings_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BDB1A1C9A56009996A4 /* Holiday_Settings_Storyboard.storyboard */; };
-		84010BDF1A1C9A56009996A4 /* Holiday_SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BDD1A1C9A56009996A4 /* Holiday_SettingViewController.m */; };
 		84010BE81A1C9AEE009996A4 /* Clinic_Detail_View_AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BE21A1C9AEE009996A4 /* Clinic_Detail_View_AppointmentsViewController.m */; };
 		84010BE91A1C9AEE009996A4 /* Clinic_View_Appointments_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BE31A1C9AEE009996A4 /* Clinic_View_Appointments_Storyboard.storyboard */; };
 		84010BEA1A1C9AEE009996A4 /* Clinic_View_Appointments_Table_CellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BE51A1C9AEE009996A4 /* Clinic_View_Appointments_Table_CellViewController.m */; };
@@ -208,6 +206,8 @@
 		849E2D531A1B84BB00ED94C3 /* DoctorHoliday.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849E2D521A1B84BB00ED94C3 /* DoctorHoliday.storyboard */; };
 		849E2D561A1B84CF00ED94C3 /* DoctorHolidayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E2D551A1B84CF00ED94C3 /* DoctorHolidayViewController.m */; };
 		84F10A2B1A1CC35400D5EE22 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F10A2A1A1CC35400D5EE22 /* setting.png */; };
+		84F10A321A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F10A2F1A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard */; };
+		84F10A331A1CCE6100D5EE22 /* Holiday_SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F10A311A1CCE6100D5EE22 /* Holiday_SettingViewController.m */; };
 		ECBA10781A1CADCE00E4AB41 /* DPCalendar.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = ECBA106D1A1CADCE00E4AB41 /* DPCalendar.xcdatamodel */; };
 		ECBA10791A1CADCE00E4AB41 /* DPCalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBA106F1A1CADCE00E4AB41 /* DPCalendarEvent.m */; };
 		ECBA107A1A1CADCE00E4AB41 /* DPCalendarIconEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBA10711A1CADCE00E4AB41 /* DPCalendarIconEvent.m */; };
@@ -257,9 +257,6 @@
 		84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Report_RequestViewController.m; sourceTree = "<group>"; };
 		84010BD41A1C99D2009996A4 /* Clinic_Report_Table_CellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Report_Table_CellViewController.h; sourceTree = "<group>"; };
 		84010BD51A1C99D2009996A4 /* Clinic_Report_Table_CellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Report_Table_CellViewController.m; sourceTree = "<group>"; };
-		84010BDB1A1C9A56009996A4 /* Holiday_Settings_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Holiday_Settings_Storyboard.storyboard; sourceTree = "<group>"; };
-		84010BDC1A1C9A56009996A4 /* Holiday_SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Holiday_SettingViewController.h; sourceTree = "<group>"; };
-		84010BDD1A1C9A56009996A4 /* Holiday_SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Holiday_SettingViewController.m; sourceTree = "<group>"; };
 		84010BE11A1C9AEE009996A4 /* Clinic_Detail_View_AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_View_AppointmentsViewController.h; sourceTree = "<group>"; };
 		84010BE21A1C9AEE009996A4 /* Clinic_Detail_View_AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Detail_View_AppointmentsViewController.m; sourceTree = "<group>"; };
 		84010BE31A1C9AEE009996A4 /* Clinic_View_Appointments_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clinic_View_Appointments_Storyboard.storyboard; sourceTree = "<group>"; };
@@ -574,6 +571,9 @@
 		849E2D541A1B84CF00ED94C3 /* DoctorHolidayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorHolidayViewController.h; sourceTree = "<group>"; };
 		849E2D551A1B84CF00ED94C3 /* DoctorHolidayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorHolidayViewController.m; sourceTree = "<group>"; };
 		84F10A2A1A1CC35400D5EE22 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		84F10A2F1A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Holiday_Settings_Storyboard.storyboard; sourceTree = "<group>"; };
+		84F10A301A1CCE6100D5EE22 /* Holiday_SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Holiday_SettingViewController.h; sourceTree = "<group>"; };
+		84F10A311A1CCE6100D5EE22 /* Holiday_SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Holiday_SettingViewController.m; sourceTree = "<group>"; };
 		ECBA106D1A1CADCE00E4AB41 /* DPCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DPCalendar.xcdatamodel; sourceTree = "<group>"; };
 		ECBA106E1A1CADCE00E4AB41 /* DPCalendarEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarEvent.h; sourceTree = "<group>"; };
 		ECBA106F1A1CADCE00E4AB41 /* DPCalendarEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarEvent.m; sourceTree = "<group>"; };
@@ -659,16 +659,6 @@
 				84010BD51A1C99D2009996A4 /* Clinic_Report_Table_CellViewController.m */,
 			);
 			name = ClinicReportRequests;
-			sourceTree = "<group>";
-		};
-		84010BDA1A1C9A1A009996A4 /* ClinicHolidaySettings */ = {
-			isa = PBXGroup;
-			children = (
-				84010BDB1A1C9A56009996A4 /* Holiday_Settings_Storyboard.storyboard */,
-				84010BDC1A1C9A56009996A4 /* Holiday_SettingViewController.h */,
-				84010BDD1A1C9A56009996A4 /* Holiday_SettingViewController.m */,
-			);
-			name = ClinicHolidaySettings;
 			sourceTree = "<group>";
 		};
 		84010BE01A1C9A77009996A4 /* ClinicViewAppointments */ = {
@@ -1290,6 +1280,7 @@
 		84589EFE1A11F2CC00612BBA = {
 			isa = PBXGroup;
 			children = (
+				84F10A2C1A1CCD4F00D5EE22 /* ClinicHolidaySettings */,
 				ECBA106C1A1CADAC00E4AB41 /* DPCalendar_View */,
 				84010C161A1CA3D9009996A4 /* ClinicAppointments */,
 				84010C101A1C9B6C009996A4 /* ClinicDashboard */,
@@ -1297,7 +1288,6 @@
 				84010BFE1A1C9B1B009996A4 /* ClinicProfile */,
 				84010BEC1A1C9AFF009996A4 /* ClinicAddPatient */,
 				84010BE01A1C9A77009996A4 /* ClinicViewAppointments */,
-				84010BDA1A1C9A1A009996A4 /* ClinicHolidaySettings */,
 				84010BCE1A1C99AA009996A4 /* ClinicReportRequests */,
 				849E2D511A1B84A200ED94C3 /* DoctorHolidaySettings */,
 				849C0E841A1B739800F4461E /* DotorTodayAppointment */,
@@ -1531,6 +1521,16 @@
 			name = DoctorHolidaySettings;
 			sourceTree = "<group>";
 		};
+		84F10A2C1A1CCD4F00D5EE22 /* ClinicHolidaySettings */ = {
+			isa = PBXGroup;
+			children = (
+				84F10A2F1A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard */,
+				84F10A301A1CCE6100D5EE22 /* Holiday_SettingViewController.h */,
+				84F10A311A1CCE6100D5EE22 /* Holiday_SettingViewController.m */,
+			);
+			name = ClinicHolidaySettings;
+			sourceTree = "<group>";
+		};
 		ECBA106C1A1CADAC00E4AB41 /* DPCalendar_View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1701,6 +1701,7 @@
 			files = (
 				84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */,
 				8429E73A1A19DA58003DBF5D /* doctorprofile.jpg in Resources */,
+				84F10A321A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard in Resources */,
 				ECBA108D1A1CAE0500E4AB41 /* BtnAddSomething.png in Resources */,
 				84589F6A1A1237DC00612BBA /* Chiropractic-symbol.png in Resources */,
 				8442B9261A14C70500785A13 /* dashboard1.png in Resources */,
@@ -1743,7 +1744,6 @@
 				84589F641A12310400612BBA /* circle.png in Resources */,
 				8442B8F61A14713C00785A13 /* checkBoxMarked.png in Resources */,
 				8442B8F41A14713C00785A13 /* checkBox.png in Resources */,
-				84010BDE1A1C9A56009996A4 /* Holiday_Settings_Storyboard.storyboard in Resources */,
 				ECBA108F1A1CAE0500E4AB41 /* IconArrowNext.png in Resources */,
 				8442B9051A147A4500785A13 /* FontAwesome.ttf in Resources */,
 				8429E7291A19C2F4003DBF5D /* day.png in Resources */,
@@ -1823,6 +1823,7 @@
 				841084471A1318B500652C08 /* Message_detailViewController.m in Sources */,
 				8410851D1A1349B800652C08 /* FFDayCell.m in Sources */,
 				ECBA10A01A1CAE2900E4AB41 /* DPCalendarMonthlyCell.m in Sources */,
+				84F10A331A1CCE6100D5EE22 /* Holiday_SettingViewController.m in Sources */,
 				841084C91A13471800652C08 /* FFMonthCellForYearCell.m in Sources */,
 				84010BFB1A1C9B14009996A4 /* Clinic_Edit_PatientViewController.m in Sources */,
 				841084B51A1346BC00652C08 /* FFYearCalendarView.m in Sources */,
@@ -1840,7 +1841,6 @@
 				841084E51A13488700652C08 /* FFWeekCalendarView.m in Sources */,
 				84589F601A121BB000612BBA /* MessagesViewController.m in Sources */,
 				84010C201A1CA411009996A4 /* Clinic_AppointmentsViewController.m in Sources */,
-				84010BDF1A1C9A56009996A4 /* Holiday_SettingViewController.m in Sources */,
 				841084EA1A13489300652C08 /* FFWeekHeaderCollectionView.m in Sources */,
 				849C0E801A1B693000F4461E /* DoctorAppointmentTableCellViewController.m in Sources */,
 				841085071A13493600652C08 /* FFDayHeaderCollectionView.m in Sources */,
