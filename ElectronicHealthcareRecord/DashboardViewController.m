@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController.h"
+#import "DPCalendarTestViewController.h"
 
 @interface DashboardViewController ()
 
@@ -72,9 +73,12 @@ scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [_pageImages c
 }
 -(IBAction)appointments:(id)sender
 {
-    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
-    UIViewController *initialvc=[welcome instantiateInitialViewController];
-    [self.navigationController pushViewController:initialvc animated:YES];
+//    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
+//    UIViewController *initialvc=[welcome instantiateInitialViewController];
+//    [self.navigationController pushViewController:initialvc animated:YES];
+    DPCalendarTestViewController *testViewController = [DPCalendarTestViewController new];
+    
+    [self presentViewController:testViewController animated:YES completion:nil];
 }
 -(IBAction)basicinfo:(id)sender
 {

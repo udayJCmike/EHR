@@ -7,29 +7,44 @@
 //
 
 #import "ElectronicHealthcareRecordAppDelegate.h"
-
+#import "NSDate+DP.h"
 @implementation ElectronicHealthcareRecordAppDelegate
-
+@synthesize event;
+@synthesize ListOfAppointments;
+@synthesize ListOfappointment_status;
+@synthesize ListOfHolidays;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
-//    UIViewController *initialvc=[welcome instantiateInitialViewController];
-//    self.window.rootViewController=initialvc;
-    // Override point for customization after application launch.
+    ListOfAppointments= [[NSMutableArray alloc]init];
+    ListOfappointment_status=[[NSMutableDictionary alloc]init];
+    ListOfHolidays= [[NSMutableArray alloc]init];
+    [ListOfHolidays addObject:@"2014-12-24"];
+    [ListOfHolidays addObject:@"2014-12-25"];
+    [ListOfHolidays addObject:@"2014-12-26"];
+    [ListOfHolidays addObject:@"2014-12-27"];
+    NSDate *date = [[NSDate date] dateByAddingYears:0 months:0 days:0];
     
-    
-//    UINavigationBar navigationBarAppearace = UINavigationBar.appearance()
-//    
-//    navigationBarAppearace.tintColor = uicolorFromHex(0xffffff)
-//    navigationBarAppearace.barTintColor = uicolorFromHex(0x33d685)
-//    
-//    // change navigation item title color
-  //  navigationBarAppearace.titleTextAttributes =[NSForegroundColorAttributeName:UIColor.whiteColor()]
-   
-    // [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.2 green:0.839 blue:0.522 alpha:1]] ;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy:MM:dd"];
+    NSArray *index=@[@"Available",@"Waiting",@"Full"];
+    // NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
+    for (int i = 0; i < 10; i++)
+    {
+        if (arc4random() % 2 > 0)
+        {
+            
+            event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:date endTime:[date dateByAddingYears:0 months:0 days:0] colorIndex:2];
+            [ListOfAppointments addObject:event];
+        }
+        
+        ;
+        [ListOfappointment_status setValue:[index objectAtIndex:i%3] forKey:[formatter stringFromDate:date]];
+        date = [date dateByAddingYears:0 months:0 days:2];
+    }
+    //NSLog(@"ListOfappointment_status %@",ListOfappointment_status);
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -38,7 +53,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
