@@ -9,6 +9,7 @@
 #import "TodayViewController.h"
 #import "DoctorTodayAppointmentDetailedViewController.h"
 #import "TodayTableCellViewController.h"
+#import "DPCalendarTestViewController.h"
 @interface TodayViewController ()
 
 @end
@@ -136,10 +137,13 @@
     [navButton setHidden:YES];
 }
 -(IBAction)myButtonClicked:(id)sender{
-    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
-    UIViewController *initialvc=[welcome instantiateInitialViewController];
-    [self.navigationController pushViewController:initialvc animated:YES];
-   // [self performSegueWithIdentifier:@"addappointment" sender:self];
+    DPCalendarTestViewController *testViewController = [DPCalendarTestViewController new];
+    
+    [self presentViewController:testViewController animated:YES completion:nil];
+//    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
+//    UIViewController *initialvc=[welcome instantiateInitialViewController];
+//    [self.navigationController pushViewController:initialvc animated:YES];
+//   // [self performSegueWithIdentifier:@"addappointment" sender:self];
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

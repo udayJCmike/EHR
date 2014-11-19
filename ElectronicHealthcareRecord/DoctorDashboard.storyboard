@@ -85,7 +85,7 @@
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Glk-6O-gsQ">
                                         <rect key="frame" x="430" y="38" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="calender.png">
+                                        <state key="normal" backgroundImage="setting.png">
                                             <color key="titleShadowColor" red="0.10107764950000001" green="0.80662069520000002" blue="0.27927669100000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -387,6 +387,7 @@
         <image name="dossier_medical_vert_1_1.png" width="334" height="173"/>
         <image name="logout.png" width="2000" height="2000"/>
         <image name="profile.png" width="256" height="256"/>
+        <image name="setting.png" width="512" height="512"/>
         <image name="view appointments.png" width="440" height="439"/>
     </resources>
     <color key="tintColor" red="0.20000000000000001" green="0.83921568627450982" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>

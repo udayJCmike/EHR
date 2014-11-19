@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIButton+Bootstrap.h"
-@interface DetailedPatientReportViewController : UIViewController
+@interface DetailedPatientReportViewController : UIViewController<UIScrollViewDelegate>
 @property(nonatomic,retain)NSDictionary *detailedData;
 @property(nonatomic,retain)IBOutlet UILabel *patname;
 @property(nonatomic,retain)IBOutlet UITextView *result;

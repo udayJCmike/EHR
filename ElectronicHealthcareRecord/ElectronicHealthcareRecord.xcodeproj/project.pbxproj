@@ -207,6 +207,7 @@
 		849E2D501A1B826100ED94C3 /* DoctorTodayAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849E2D4F1A1B826100ED94C3 /* DoctorTodayAppointment.storyboard */; };
 		849E2D531A1B84BB00ED94C3 /* DoctorHoliday.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849E2D521A1B84BB00ED94C3 /* DoctorHoliday.storyboard */; };
 		849E2D561A1B84CF00ED94C3 /* DoctorHolidayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E2D551A1B84CF00ED94C3 /* DoctorHolidayViewController.m */; };
+		84F10A2B1A1CC35400D5EE22 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F10A2A1A1CC35400D5EE22 /* setting.png */; };
 		ECBA10781A1CADCE00E4AB41 /* DPCalendar.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = ECBA106D1A1CADCE00E4AB41 /* DPCalendar.xcdatamodel */; };
 		ECBA10791A1CADCE00E4AB41 /* DPCalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBA106F1A1CADCE00E4AB41 /* DPCalendarEvent.m */; };
 		ECBA107A1A1CADCE00E4AB41 /* DPCalendarIconEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBA10711A1CADCE00E4AB41 /* DPCalendarIconEvent.m */; };
@@ -572,6 +573,7 @@
 		849E2D521A1B84BB00ED94C3 /* DoctorHoliday.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DoctorHoliday.storyboard; sourceTree = "<group>"; };
 		849E2D541A1B84CF00ED94C3 /* DoctorHolidayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorHolidayViewController.h; sourceTree = "<group>"; };
 		849E2D551A1B84CF00ED94C3 /* DoctorHolidayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorHolidayViewController.m; sourceTree = "<group>"; };
+		84F10A2A1A1CC35400D5EE22 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		ECBA106D1A1CADCE00E4AB41 /* DPCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DPCalendar.xcdatamodel; sourceTree = "<group>"; };
 		ECBA106E1A1CADCE00E4AB41 /* DPCalendarEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarEvent.h; sourceTree = "<group>"; };
 		ECBA106F1A1CADCE00E4AB41 /* DPCalendarEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarEvent.m; sourceTree = "<group>"; };
@@ -1454,6 +1456,7 @@
 		84589F6B1A12386F00612BBA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				84F10A2A1A1CC35400D5EE22 /* setting.png */,
 				849C0E741A1B651600F4461E /* add appointment.png */,
 				849C0E751A1B651600F4461E /* view appointments.png */,
 				849C0E6F1A1B3A3F00F4461E /* calender.png */,
@@ -1759,6 +1762,7 @@
 				841084751A1344BF00652C08 /* MonthlyCalendar.png in Resources */,
 				ECBA10921A1CAE0500E4AB41 /* IconArrowPrev@2x.png in Resources */,
 				8442B8F51A14713C00785A13 /* checkBox@2x.png in Resources */,
+				84F10A2B1A1CC35400D5EE22 /* setting.png in Resources */,
 				8442B93C1A14EA7B00785A13 /* x-ray2.jpg in Resources */,
 				8429E7321A19D00B003DBF5D /* home.png in Resources */,
 				8404585D1A15EE8F007F0B64 /* Medical Records.png in Resources */,

@@ -9,7 +9,7 @@
 #import "Clinic_AppointmentsViewController.h"
 #import "Clinic_Detail_AppointmentsViewController.h"
 #import "Clinic_View_Appointments_Table_CellViewController.h"
-
+#import "DPCalendarTestViewController.h"
 @interface Clinic_AppointmentsViewController ()
 
 @end
@@ -124,11 +124,9 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)myButtonClicked:(id)sender{
-    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];
-    UIViewController *initialvc=[welcome instantiateInitialViewController];
-    [self.navigationController pushViewController:initialvc animated:YES];
+    DPCalendarTestViewController *testViewController = [DPCalendarTestViewController new];
     
-}
+    [self presentViewController:testViewController animated:YES completion:nil];}
 
 
 

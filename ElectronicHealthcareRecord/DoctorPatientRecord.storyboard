@@ -301,6 +301,7 @@
                     <navigationItem key="navigationItem" title="Detailed Report" id="b8h-Go-30m"/>
                     <connections>
                         <outlet property="DownloadStatus" destination="ibR-00-Aa7" id="A19-5Z-awf"/>
+                        <outlet property="grey_view" destination="xJe-Mb-flx" id="OJk-KM-2yY"/>
                         <outlet property="pagecontrol" destination="xdK-jT-Mss" id="TtF-Eo-eoL"/>
                         <outlet property="patname" destination="iry-Hx-O30" id="LIu-NS-gfm"/>
                         <outlet property="problem" destination="u42-Us-vmd" id="9aW-j9-zPD"/>

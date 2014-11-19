@@ -1,18 +1,18 @@
 //
-//  Clinic_Profile_DetailsViewController.h
+//  DoctorProfileViewController.h
 //  ElectronicHealthcareRecord
 //
-//  Created by deemsys on 11/17/14.
+//  Created by DeemsysInc on 17/11/14.
 //  Copyright (c) 2014 Deemsysinc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "UIButton+Bootstrap.h"
 
 @interface Clinic_Profile_DetailsViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIView *grey_view;
-
-@property (strong, nonatomic) IBOutlet UIView *heading_view;
-@property (strong, nonatomic) IBOutlet UIImageView *img_view;
-
+@property (strong, nonatomic) IBOutlet UIView *bgview;
+@property (strong, nonatomic) IBOutlet UIButton *update;
+@property (strong, nonatomic) IBOutlet UIButton *cancel;
+@property (strong, nonatomic) IBOutlet UIImageView *circle;
 
 @end

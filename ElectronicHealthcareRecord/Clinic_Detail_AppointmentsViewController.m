@@ -13,7 +13,8 @@
 @end
 
 @implementation Clinic_Detail_AppointmentsViewController
-
+@synthesize reshedule;
+@synthesize cancel;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +31,9 @@
     
     self.grey_view.clipsToBounds=YES;
     self.grey_view.layer.cornerRadius=10;
+    [reshedule primaryStyle];
+    [cancel defaultStyle];
+    
 }
 
 - (void)didReceiveMemoryWarning
