@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Home</string>
+		<key>image</key>
+		<string>home.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Today</string>
+		<key>image</key>
+		<string>Home.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Day</string>
+		<key>image</key>
+		<string>day.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Week</string>
+		<key>image</key>
+		<string>week.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Month</string>
+		<key>image</key>
+		<string>month.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Year</string>
+		<key>image</key>
+		<string>year.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Add</string>
+		<key>image</key>
+		<string>add_app.png</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Cancel</string>
+		<key>image</key>
+		<string>cancel.png</string>
+	</dict>
+</array>
+</plist>
