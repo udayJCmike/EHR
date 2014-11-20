@@ -111,6 +111,7 @@
         
         else if ([delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]])
         {
+            
             NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]];
             if ([status_for_date isEqualToString:@"Available"])
             {
@@ -146,7 +147,7 @@
     {
         if([self.event.title length]>0)
         {
-            NSLog(@"Event %@", self.event);
+           // NSLog(@"Event in appointment screen page %@", self.event);
             [self.delegate eventCreated:self.event];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -164,11 +165,11 @@
 {
     if (buttonIndex==1)
     {
-        self.event.title=@"Waiting for appointment";
+        self.event.title=@"Waiting for app";
         status=1;
         if([self.event.title length]>0)
         {
-            NSLog(@"Event %@", self.event);
+           // NSLog(@"Event in alert%@", self.event);
             [self.delegate eventCreated:self.event];
             [self dismissViewControllerAnimated:YES completion:nil];
         }

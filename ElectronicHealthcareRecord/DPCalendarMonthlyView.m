@@ -121,6 +121,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefault = 0; 
         delegate=AppDelegate;
         [self commonInit];
         self.monthlyViewDelegate = monthViewDelegate;
+        self.MultipletimeReloading=FALSE;
     }
     return self;
 }
@@ -719,10 +720,16 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefault = 0; 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     self.selectedDate = [self dateForCollectionView:collectionView IndexPath:indexPath];
-    
-    if ([self.monthlyViewDelegate respondsToSelector:@selector(didSelectItemWithDate:)]) {
-        return [self.monthlyViewDelegate didSelectItemWithDate:self.selectedDate];
+    if (self.MultipletimeReloading==FALSE) {
+        if ([self.monthlyViewDelegate respondsToSelector:@selector(didSelectItemWithDate:)]) {
+            return [self.monthlyViewDelegate didSelectItemWithDate:self.selectedDate];
+        }
     }
+    else
+    {
+        self.MultipletimeReloading=FALSE;
+    }
+    
 }
 
 - (void) clickDate:(NSDate *)date {

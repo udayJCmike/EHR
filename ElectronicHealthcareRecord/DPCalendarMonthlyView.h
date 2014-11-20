@@ -62,7 +62,7 @@ extern NSString *const DPCalendarMonthlyViewAttributeMonthRows; //A convenient f
 {
       ElectronicHealthcareRecordAppDelegate *delegate;
 }
-
+@property BOOL MultipletimeReloading;  ///Set to restrict multiple time DidSelectItem method calling
 //Current selected date
 @property (nonatomic, readonly) NSDate *selectedDate;
 

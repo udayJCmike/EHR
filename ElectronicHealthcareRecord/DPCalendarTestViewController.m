@@ -304,10 +304,24 @@
         NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]];
         if ([status_for_date isEqualToString:@"Available"])
         {
-            isUpdating=FALSE;
-            selected_date=[date dateByAddingYears:0 months:0 days:0];
-            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
-            [self createEventButtonSelected:event1];
+            if (![self.monthlyView eventsForDay:date]) {
+                isUpdating=FALSE;
+                selected_date=[date dateByAddingYears:0 months:0 days:0];
+                DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+                [self createEventButtonSelected:event1];
+                
+            }
+            else
+            {
+            NSArray *listOfeventsForDay=[self.monthlyView eventsForDay:date];
+            if ([listOfeventsForDay count]>0) {
+                DPCalendarEvent *event=[listOfeventsForDay objectAtIndex:0];
+                //            NSLog(@"Selected event datas title %@ with \n s_date %@ \n and e_time %@", event.title, event.startTime,event.endTime);
+                isUpdating=TRUE;
+                IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
+                [self createEventButtonSelected:event];
+            }
+            }
         }
         else if ([status_for_date isEqualToString:@"Waiting"])
         {
@@ -351,7 +365,7 @@
         if (![self.monthlyView eventsForDay:response_date]) {
             isUpdating=FALSE;
             selected_date=[response_date dateByAddingYears:0 months:0 days:0];
-            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Waiting for app" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
             [self createEventButtonSelected:event1];
             
         }
@@ -368,7 +382,7 @@
                 [self createEventButtonSelected:event];
             }
         }
-        
+       // NSLog(@"alert in test");
     }
     else if (buttonIndex==0)
     {
@@ -458,11 +472,13 @@
 -(void)eventCreated:(DPCalendarEvent *)event {
     if (isUpdating) {
         [self.events replaceObjectAtIndex:IndexOfUpdatedEvent withObject:event];
+        self.monthlyView.MultipletimeReloading=TRUE;
         [self.monthlyView setEvents:self.events complete:nil];
     }
     else
     {
         [self.events addObject:event];
+          self.monthlyView.MultipletimeReloading=TRUE;
         [self.monthlyView setEvents:self.events complete:nil];
     }
 }
