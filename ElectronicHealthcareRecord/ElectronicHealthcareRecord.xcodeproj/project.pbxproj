@@ -1534,9 +1534,6 @@
 		ECBA106C1A1CADAC00E4AB41 /* DPCalendar_View */ = {
 			isa = PBXGroup;
 			children = (
-				ECBA10801A1CADEC00E4AB41 /* Shared */,
-				ECBA107F1A1CADE200E4AB41 /* Monthly */,
-				ECBA107E1A1CADDB00E4AB41 /* Images */,
 				ECBA106D1A1CADCE00E4AB41 /* DPCalendar.xcdatamodel */,
 				ECBA106E1A1CADCE00E4AB41 /* DPCalendarEvent.h */,
 				ECBA106F1A1CADCE00E4AB41 /* DPCalendarEvent.m */,
@@ -1548,6 +1545,9 @@
 				ECBA10751A1CADCE00E4AB41 /* NSDate+DP.m */,
 				ECBA10761A1CADCE00E4AB41 /* NSString+DP.h */,
 				ECBA10771A1CADCE00E4AB41 /* NSString+DP.m */,
+				ECBA107E1A1CADDB00E4AB41 /* Images */,
+				ECBA10801A1CADEC00E4AB41 /* Shared */,
+				ECBA107F1A1CADE200E4AB41 /* Monthly */,
 			);
 			name = DPCalendar_View;
 			sourceTree = "<group>";

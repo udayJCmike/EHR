@@ -25,7 +25,7 @@
     NSDate *date = [[NSDate date] dateByAddingYears:0 months:0 days:0];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy:MM:dd"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     NSArray *index=@[@"Available",@"Waiting",@"Full"];
     // NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
     for (int i = 0; i < 10; i++)

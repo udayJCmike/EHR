@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ElectronicHealthcareRecordAppDelegate.h"
 #define AppDelegate (ElectronicHealthcareRecordAppDelegate *)[[UIApplication sharedApplication] delegate]
-@interface DPCalendarTestViewController : UIViewController
+@interface DPCalendarTestViewController : UIViewController<UIAlertViewDelegate>
 
 {
+    NSDate *response_date;
     int IndexOfUpdatedEvent;
     BOOL isUpdating;
 }

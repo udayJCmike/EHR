@@ -1,5 +1,5 @@
 //
-//  DPCalendarTestCreateEventViewController.m
+// DPCalendarTestCreateEventViewController.m
 //  DPCalendar
 //
 //  Created by Ethan Fang on 21/01/14.
@@ -11,7 +11,9 @@
 #import "NSDate+DP.h"
 
 @interface DPCalendarTestCreateEventViewController ()<UITableViewDelegate, UITableViewDataSource, DPCalendarTestOptionsCellDelegate>
-
+{
+    ElectronicHealthcareRecordAppDelegate *delegate;
+}
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
@@ -31,11 +33,11 @@
 {
     [super viewDidLoad];
     
-//    self.event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:[[NSDate date] dateByAddingYears:0 months:0 days:0] endTime:[[NSDate date] dateByAddingYears:0 months:0 days:1] colorIndex:0];
-    
+    //    self.event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:[[NSDate date] dateByAddingYears:0 months:0 days:0] endTime:[[NSDate date] dateByAddingYears:0 months:0 days:1] colorIndex:0];
+    delegate=AppDelegate;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonSelected)];
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonSelected)];
-   
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonSelected)];
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -44,51 +46,145 @@
     
     [self.view addSubview:self.tableView];
 }
-
-- (void) doneButtonSelected{
-  
-    NSString *title_name= self.navigationController.title;
-    if (([title_name isEqualToString:@"Reschedule Appointment"])&&([self.event.startTime compare:self.event.endTime]==NSOrderedDescending)) {
-        NSString *stringDate = [NSString stringWithFormat:@"%@",self.event.startTime];
-//        NSLog(@"Reschedule gng to handle date for 4th case %@",stringDate);
-        NSArray *mycomp = [stringDate componentsSeparatedByCharactersInSet:
+-(void)Change_EndTime
+{
+    NSString *stringDate = [NSString stringWithFormat:@"%@",self.event.startTime];
+    //        NSLog(@"Reschedule gng to handle date for 4th case %@",stringDate);
+    NSArray *mycomp = [stringDate componentsSeparatedByCharactersInSet:
+                       [NSCharacterSet characterSetWithCharactersInString:@" "]
+                       ];
+    stringDate  = [mycomp objectAtIndex:0];
+    
+    //        NSLog(@"DAte from starttime %@",stringDate);
+    
+    NSString *stringTime = [NSString stringWithFormat:@"%@",self.event.endTime];
+    
+    NSArray *mytimecomp = [stringTime componentsSeparatedByCharactersInSet:
                            [NSCharacterSet characterSetWithCharactersInString:@" "]
                            ];
-        stringDate  = [mycomp objectAtIndex:0];
-        
-//        NSLog(@"DAte from starttime %@",stringDate);
-        
-        NSString *stringTime = [NSString stringWithFormat:@"%@",self.event.endTime];
-        
-        NSArray *mytimecomp = [stringTime componentsSeparatedByCharactersInSet:
-                           [NSCharacterSet characterSetWithCharactersInString:@" "]
-                           ];
-        mytimecomp = [[mytimecomp objectAtIndex:1] componentsSeparatedByCharactersInSet:
+    mytimecomp = [[mytimecomp objectAtIndex:1] componentsSeparatedByCharactersInSet:
                   [NSCharacterSet characterSetWithCharactersInString:@":"]
                   ];
-        stringTime =  [NSString stringWithFormat:@"%@:%@",[mytimecomp objectAtIndex:0],[mytimecomp objectAtIndex:1]];
-//         NSLog(@"Time from end time  %@",stringTime);
-        NSString *endDate=  [NSString stringWithFormat:@"%@ %@:00 +0000",stringDate,stringTime];
-        NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
-        [formatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-        NSDate *converted_endDate=  [formatter1 dateFromString:endDate];
-//        NSLog(@"Finally end date for event  %@",converted_endDate);
-        self.event.endTime=converted_endDate;
-
+    stringTime =  [NSString stringWithFormat:@"%@:%@",[mytimecomp objectAtIndex:0],[mytimecomp objectAtIndex:1]];
+    //         NSLog(@"Time from end time  %@",stringTime);
+    NSString *endDate=  [NSString stringWithFormat:@"%@ %@:00 +0000",stringDate,stringTime];
+    NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
+    [formatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    NSDate *converted_endDate=  [formatter1 dateFromString:endDate];
+    //        NSLog(@"Finally end date for event  %@",converted_endDate);
+    self.event.endTime=converted_endDate;
+    
+}
+- (void) doneButtonSelected{
+    status=1;
+    NSString *title_name= self.navigationController.title;
+    if (([title_name isEqualToString:@"Reschedule Appointment"])&&([self.event.startTime compare:self.event.endTime]==NSOrderedDescending))
+    {
+        [self Change_EndTime];
     }
-      NSLog(@"Event %@", self.event);
-   if([self.event.title length]>0)
-   {
-    [self.delegate eventCreated:self.event];
-    [self dismissViewControllerAnimated:YES completion:nil];
-   }
+    if ([title_name isEqualToString:@"Reschedule Appointment"])
+    {
+        status=1;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate  *today=[[NSDate date]dateByAddingYears:0 months:0 days:0];
+        NSDate *s_date=[self.event.startTime dateByAddingYears:0 months:0 days:1];
+        NSDate *s_date1=[self.event.startTime dateByAddingYears:0 months:0 days:0];
+        NSString *selected_string=[formatter stringFromDate:s_date1];
+        NSDateFormatter *weekFormatter = [[NSDateFormatter alloc] init] ;
+        [weekFormatter setDateFormat:@"EEEE"];
+        NSString *weekday= [weekFormatter stringFromDate:s_date1];
+        // NSLog(@"Select date %@ and status %hhd",selected_string,[delegate.ListOfHolidays containsObject:selected_string]);
+        //     NSLog(@"Select date %@ with  today date %@", s_date, today);
+        if (([s_date compare:today]==NSOrderedAscending)||([weekday isEqualToString:@"Sunday"])||([weekday isEqualToString:@"Saturday"]))
+        {
+            status=0;
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else if([delegate.ListOfHolidays containsObject:selected_string])
+        {
+            status=0;
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        else if ([delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]])
+        {
+            NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]];
+            if ([status_for_date isEqualToString:@"Available"])
+            {
+                status=1;
+            }
+            else if ([status_for_date isEqualToString:@"Waiting"])
+            {
+                status=0;
+                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Your appointment will be in waiting status.Would you like to proceed?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                [alert show];
+            }
+            else if ([status_for_date isEqualToString:@"Full"])
+            {
+                status=0;
+                UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }
+        else
+        {
+            status=1;
+            
+        }
+        
+    }
     else
     {
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Give title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        
+        status=1;
     }
+    
+    if (status==1)
+    {
+        if([self.event.title length]>0)
+        {
+            NSLog(@"Event %@", self.event);
+            [self.delegate eventCreated:self.event];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            status=0;
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Give title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1)
+    {
+        self.event.title=@"Waiting for appointment";
+        status=1;
+        if([self.event.title length]>0)
+        {
+            NSLog(@"Event %@", self.event);
+            [self.delegate eventCreated:self.event];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            status=0;
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Give title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else if (buttonIndex==0)
+    {
+        status=0;
+        NSLog(@"Cancelled");
+    }
+}
 - (void) cancelButtonSelected{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -114,7 +210,7 @@
         cell = [[DPCalendarTestOptionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NEW_EVENT_CELL_IDENTIFIER];
         
     }
-   
+    
     cell.delegate = self;
     switch (indexPath.row) {
         case 0:
@@ -184,13 +280,13 @@
     if ([identifier isEqualToString:CELL_TITLE]) {
         self.event.title = value;
     } else if ([identifier isEqualToString:CELL_START_TIME]) {
-//    NSLog(@"start time changed %@",value);
+        //    NSLog(@"start time changed %@",value);
         self.event.startTime = value;
         
     }
     else
     {
-//        NSLog(@"End time changed %@",value);
+        //        NSLog(@"End time changed %@",value);
         self.event.endTime = value;
     }
 }

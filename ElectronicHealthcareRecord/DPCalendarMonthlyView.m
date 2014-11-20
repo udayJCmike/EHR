@@ -607,7 +607,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefault = 0; 
         
         // Month cells
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy:MM:dd"];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
         DPCalendarMonthlySingleMonthCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DPCalendarViewDayCellIdentifier forIndexPath:indexPath];
         cell.delegate = self;
         cell.iconEventMarginX = self.iconEventMarginX;

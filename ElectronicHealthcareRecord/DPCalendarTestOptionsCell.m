@@ -82,6 +82,7 @@ enum CellType{
 // these methods return either a plain NSString, a NSAttributedString, or a view (e.g UILabel) to display the row for the component.
 -(NSString*) pickerView:(UIPickerView*)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    
     return [self.timeArray objectAtIndex:row];
 }
 
@@ -173,7 +174,7 @@ enum CellType{
 
 - (void) dateChanged:(UIDatePicker *)picker{
     self.date = picker.date;
-    NSLog(@"date picked %@",picker.date);
+    //    NSLog(@"date picked %@",picker.date);
     [self.delegate cell:self valueChanged:[picker.date dateByAddingYears:0 months:0 days:0]];
 }
 
@@ -234,18 +235,18 @@ enum CellType{
         if (isReschedule)
         {
             NSString *stringDate = [NSString stringWithFormat:@"%@",date];
-            NSLog(@"Reschedule gng to handle date %@",stringDate);
+            //            NSLog(@"Reschedule gng to handle date %@",stringDate);
             NSArray *mycomp = [stringDate componentsSeparatedByCharactersInSet:
                                [NSCharacterSet characterSetWithCharactersInString:@" "]
                                ];
             mycomp = [[mycomp objectAtIndex:1] componentsSeparatedByCharactersInSet:
-                               [NSCharacterSet characterSetWithCharactersInString:@":"]
-                               ];
-             NSLog(@"Array values %@",mycomp);
+                      [NSCharacterSet characterSetWithCharactersInString:@":"]
+                      ];
+            //             NSLog(@"Array values %@",mycomp);
             self.dateLabel.text =  [NSString stringWithFormat:@"%@:%@",[mycomp objectAtIndex:0],[mycomp objectAtIndex:1]];
         }
         else
-            self.dateLabel.text = [self strFromDate:date];
+            self.dateLabel.text =@"00:00";
         
         
         
