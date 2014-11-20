@@ -16,4 +16,5 @@
 
 
 }
+@property (weak, nonatomic) IBOutlet UIView *bgview;
 @end

@@ -42,6 +42,8 @@
 	
     [self.view addSubview:yellowRC];
     
+    self.bgview.clipsToBounds=YES;
+    self.bgview.layer.cornerRadius=10;
     //
     yellowRC.frame = CGRectMake(0, 65, 768, 50);
     // Do any additional setup after loading the view.
@@ -78,7 +80,7 @@
 }
 
 -(IBAction)myButtonClicked:(id)sender{
-   [self performSegueWithIdentifier:@"edit" sender:self];
+   [self performSegueWithIdentifier:@"updatenavigation" sender:self];
     
 }
 
