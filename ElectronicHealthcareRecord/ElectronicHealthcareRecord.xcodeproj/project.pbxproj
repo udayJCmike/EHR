@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D69BD261A1E0C7B0047A60B /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D69BD251A1E0C7B0047A60B /* close.png */; };
 		84010BD61A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */; };
 		84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */; };
 		84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */; };
@@ -250,6 +251,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D69BD251A1E0C7B0047A60B /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		84010BCF1A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_Report_RequestViewController.h; sourceTree = "<group>"; };
 		84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Detail_Report_RequestViewController.m; sourceTree = "<group>"; };
 		84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clinic_Report_Request_Storyboard.storyboard; sourceTree = "<group>"; };
@@ -1449,6 +1451,7 @@
 				84F10A2A1A1CC35400D5EE22 /* setting.png */,
 				849C0E741A1B651600F4461E /* add appointment.png */,
 				849C0E751A1B651600F4461E /* view appointments.png */,
+				0D69BD251A1E0C7B0047A60B /* close.png */,
 				849C0E6F1A1B3A3F00F4461E /* calender.png */,
 				8429E7391A19DA58003DBF5D /* doctorprofile.jpg */,
 				840458521A15EC19007F0B64 /* 24h-new-appointments-icone-4091-128.png */,
@@ -1700,6 +1703,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D69BD261A1E0C7B0047A60B /* close.png in Resources */,
 				84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */,
 				8429E73A1A19DA58003DBF5D /* doctorprofile.jpg in Resources */,
 				84F10A321A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard in Resources */,

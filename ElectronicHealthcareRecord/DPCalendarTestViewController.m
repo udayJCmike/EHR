@@ -16,6 +16,7 @@
 #import "DPCalendarTestOptionsViewController.h"
 #import "DPCalendarTestCreateEventViewController.h"
 
+
 @interface DPCalendarTestViewController ()<DPCalendarMonthlyViewDelegate, DPCalendarTestCreateEventViewControllerDelegate>
 {
     NSDate *selected_date;
@@ -89,7 +90,7 @@
     self.todayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.optionsButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.createEventButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   // self.createEventButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
    // [self.createEventButton setBackgroundImage:[UIImage imageNamed:@"BtnAddSomething"] forState:UIControlStateNormal];
     
     self.previousButton.frame = CGRectMake(self.monthLabel.frame.origin.x - 18, 20, 18, 20);
@@ -101,7 +102,7 @@
     [self.todayButton setTitle:@"Today" forState:UIControlStateNormal];
     [self.optionsButton setTitle:@"Option" forState:UIControlStateNormal];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.createEventButton setTitle:@"Help" forState:UIControlStateNormal];
+   // [self.createEventButton setTitle:@"Help" forState:UIControlStateNormal];
     
     
     
@@ -110,7 +111,7 @@
     [self.todayButton addTarget:self action:@selector(todayButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton addTarget:self action:@selector(backButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     //  [self.optionsButton addTarget:self action:@selector(optionsButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-       [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
+      // [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.monthLabel];
     [self.view addSubview:self.previousButton];
@@ -165,6 +166,7 @@
 
 - (void) backButtonSelected:(id)button {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 -(void) previousButtonSelected:(id)button {
@@ -217,29 +219,29 @@
     }
     
 }
-- (void) createEventButton:(id *)sender {
-    NSLog(@"help clicked");
-//    DPCalendarTestCreateEventViewController *createEventController = [DPCalendarTestCreateEventViewController new];
-//    createEventController.delegate = self;
+//- (void) createEventButton:(id *)sender {
+//    
+////    DPCalendarTestCreateEventViewController *createEventController = [DPCalendarTestCreateEventViewController new];
+////    createEventController.delegate = self;
+////
+////
+////    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createEventController];
+////    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+////      [navController topViewController].title = @"Create Appointment";
+////    if (isUpdating) {
+////          [navController topViewController].title = @"Reschedule Appointment";
+////    }
+////
+////    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+////    [rightBtn setTitle:@"Done" forState:UIControlStateNormal];
+////    rightBtn.frame = CGRectMake(0, 0, 70, 40 );
+////    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+////    navController.navigationItem.rightBarButtonItem = rightBarBtn;
+////    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+////        [self presentViewController:navController animated:YES completion:nil];
+////    }
 //
-//
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createEventController];
-//    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-//      [navController topViewController].title = @"Create Appointment";
-//    if (isUpdating) {
-//          [navController topViewController].title = @"Reschedule Appointment";
-//    }
-//
-//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [rightBtn setTitle:@"Done" forState:UIControlStateNormal];
-//    rightBtn.frame = CGRectMake(0, 0, 70, 40 );
-//    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-//    navController.navigationItem.rightBarButtonItem = rightBarBtn;
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-//        [self presentViewController:navController animated:YES completion:nil];
-//    }
-
-}
+//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
