@@ -207,7 +207,7 @@
 }
 -(void)addNavigationBarButton{
     UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
-                                 @"Add" style:UIBarButtonItemStyleBordered target:
+                                 @"Add Patient" style:UIBarButtonItemStyleBordered target:
                                  self action:@selector(myButtonClicked:)];
     
   //  [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];

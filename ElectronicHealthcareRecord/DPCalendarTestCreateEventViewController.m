@@ -224,7 +224,7 @@
             else if ([title_name isEqualToString:@"Reschedule Appointment"]) {
                 cell.isReschedule=TRUE;
             }
-            [cell setTitle:@"Appointment Name"];
+            [cell setTitle:@"Notes"];
             
             [cell setTextValue:self.event.title];
         }

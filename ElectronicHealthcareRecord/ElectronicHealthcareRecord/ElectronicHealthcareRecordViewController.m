@@ -59,7 +59,7 @@ NSString *title;;
 
 - (IBAction)selectClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"Super Admin", @"Clinic Admin",@"Doctor", @"Patient",nil];
+    arr = [NSArray arrayWithObjects:@"Clinic Admin",@"Doctor", @"Patient",nil];
     NSArray * arrImage = [[NSArray alloc] init];
   //  arrImage = [NSArray arrayWithObjects:[UIImage imageNamed:@"super_admin.png"], [UIImage imageNamed:@"clinic_admin.jpeg"], [UIImage imageNamed:@"patient.png"], nil];
     if(dropDown == nil) {

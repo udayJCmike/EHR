@@ -89,17 +89,19 @@
     self.todayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.optionsButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.createEventButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.createEventButton setBackgroundImage:[UIImage imageNamed:@"BtnAddSomething"] forState:UIControlStateNormal];
+    self.createEventButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   // [self.createEventButton setBackgroundImage:[UIImage imageNamed:@"BtnAddSomething"] forState:UIControlStateNormal];
+    
     self.previousButton.frame = CGRectMake(self.monthLabel.frame.origin.x - 18, 20, 18, 20);
     self.nextButton.frame = CGRectMake(CGRectGetMaxX(self.monthLabel.frame), 20, 18, 20);
     self.todayButton.frame = CGRectMake(width - 60, 20, 60, 21);
-    self.backButton.frame = CGRectMake(40, 20, 50, 20);
+    self.backButton.frame = CGRectMake(60, 20, 50, 20);
     //    self.optionsButton.frame = CGRectMake(width - 50 * 3, 20, 50, 20);
-    self.createEventButton.frame = CGRectMake(10, 20, 20, 20);
+    self.createEventButton.frame = CGRectMake(10, 20, 50, 20);
     [self.todayButton setTitle:@"Today" forState:UIControlStateNormal];
     [self.optionsButton setTitle:@"Option" forState:UIControlStateNormal];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [self.createEventButton setTitle:@"Help" forState:UIControlStateNormal];
     
     
     
@@ -108,7 +110,7 @@
     [self.todayButton addTarget:self action:@selector(todayButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton addTarget:self action:@selector(backButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     //  [self.optionsButton addTarget:self action:@selector(optionsButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-    //   [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
+       [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.monthLabel];
     [self.view addSubview:self.previousButton];
@@ -215,7 +217,8 @@
     }
     
 }
-//- (void) createEventButton:(id *)sender {
+- (void) createEventButton:(id *)sender {
+    NSLog(@"help clicked");
 //    DPCalendarTestCreateEventViewController *createEventController = [DPCalendarTestCreateEventViewController new];
 //    createEventController.delegate = self;
 //
@@ -235,8 +238,8 @@
 //    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
 //        [self presentViewController:navController animated:YES completion:nil];
 //    }
-//
-//}
+
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

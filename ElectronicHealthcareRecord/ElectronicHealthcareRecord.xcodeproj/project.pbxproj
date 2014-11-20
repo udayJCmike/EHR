@@ -1671,6 +1671,7 @@
 				ORGANIZATIONNAME = Deemsysinc;
 				TargetAttributes = {
 					84589F271A11F2CD00612BBA = {
+						DevelopmentTeam = 6N5EE6FZH9;
 						TestTargetID = 84589F061A11F2CC00612BBA;
 					};
 				};
@@ -2101,6 +2102,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ElectronicHealthcareRecord.app/ElectronicHealthcareRecord";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2114,6 +2117,7 @@
 				);
 				INFOPLIST_FILE = "ElectronicHealthcareRecordTests/ElectronicHealthcareRecordTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2123,6 +2127,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ElectronicHealthcareRecord.app/ElectronicHealthcareRecord";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2132,6 +2138,7 @@
 				GCC_PREFIX_HEADER = "ElectronicHealthcareRecord/ElectronicHealthcareRecord-Prefix.pch";
 				INFOPLIST_FILE = "ElectronicHealthcareRecordTests/ElectronicHealthcareRecordTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
