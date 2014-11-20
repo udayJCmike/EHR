@@ -9,7 +9,7 @@
 #import "TodayViewController.h"
 #import "DoctorTodayAppointmentDetailedViewController.h"
 #import "TodayTableCellViewController.h"
-#import "DPCalendarTestViewController.h"
+#import "DPCalendarTestDoctorViewController.h"
 @interface TodayViewController ()
 
 @end
@@ -137,7 +137,7 @@
     [navButton setHidden:YES];
 }
 -(IBAction)myButtonClicked:(id)sender{
-    DPCalendarTestViewController *testViewController = [DPCalendarTestViewController new];
+    DPCalendarTestDoctorViewController *testViewController = [DPCalendarTestDoctorViewController new];
     
     [self presentViewController:testViewController animated:YES completion:nil];
 //    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Appointments" bundle:nil];

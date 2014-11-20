@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0D69BD261A1E0C7B0047A60B /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D69BD251A1E0C7B0047A60B /* close.png */; };
+		0D69BD281A1E1F720047A60B /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D69BD271A1E1F720047A60B /* help.png */; };
+		0D69BD2C1A1E245C0047A60B /* DPCalendarTestDoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD2B1A1E245C0047A60B /* DPCalendarTestDoctorViewController.m */; };
+		0D69BD2F1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD2E1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.m */; };
+		0D69BD321A1E25D00047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD311A1E25D00047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.m */; };
+		0D69BD381A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD371A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.m */; };
+		0D69BD3B1A1E28920047A60B /* DPCalendarMonthlyDoctorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD3A1A1E28920047A60B /* DPCalendarMonthlyDoctorView.m */; };
+		0D69BD3E1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD3D1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m */; };
+		0D69BD411A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD401A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m */; };
+		0D69BD441A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */; };
 		84010BD61A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */; };
 		84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */; };
 		84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */; };
@@ -252,6 +261,23 @@
 
 /* Begin PBXFileReference section */
 		0D69BD251A1E0C7B0047A60B /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		0D69BD271A1E1F720047A60B /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		0D69BD2A1A1E245C0047A60B /* DPCalendarTestDoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarTestDoctorViewController.h; sourceTree = "<group>"; };
+		0D69BD2B1A1E245C0047A60B /* DPCalendarTestDoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarTestDoctorViewController.m; sourceTree = "<group>"; };
+		0D69BD2D1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarTestCreateEventDoctorViewController.h; sourceTree = "<group>"; };
+		0D69BD2E1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarTestCreateEventDoctorViewController.m; sourceTree = "<group>"; };
+		0D69BD301A1E25CF0047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarTestOptionsCellDoctorTableViewCell.h; sourceTree = "<group>"; };
+		0D69BD311A1E25D00047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarTestOptionsCellDoctorTableViewCell.m; sourceTree = "<group>"; };
+		0D69BD361A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarMonthlySingleMonthDoctorViewLayout.h; sourceTree = "<group>"; };
+		0D69BD371A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlySingleMonthDoctorViewLayout.m; sourceTree = "<group>"; };
+		0D69BD391A1E28920047A60B /* DPCalendarMonthlyDoctorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarMonthlyDoctorView.h; sourceTree = "<group>"; };
+		0D69BD3A1A1E28920047A60B /* DPCalendarMonthlyDoctorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlyDoctorView.m; sourceTree = "<group>"; };
+		0D69BD3C1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarMonthlyCellDoctorCollectionViewCell.h; sourceTree = "<group>"; };
+		0D69BD3D1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlyCellDoctorCollectionViewCell.m; sourceTree = "<group>"; };
+		0D69BD3F1A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarMonthlySingleMonthCellDoctor.h; sourceTree = "<group>"; };
+		0D69BD401A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlySingleMonthCellDoctor.m; sourceTree = "<group>"; };
+		0D69BD421A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCalendarMonthlyWeekdayCellDoctor.h; sourceTree = "<group>"; };
+		0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlyWeekdayCellDoctor.m; sourceTree = "<group>"; };
 		84010BCF1A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_Report_RequestViewController.h; sourceTree = "<group>"; };
 		84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Detail_Report_RequestViewController.m; sourceTree = "<group>"; };
 		84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clinic_Report_Request_Storyboard.storyboard; sourceTree = "<group>"; };
@@ -649,6 +675,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D69BD331A1E27760047A60B /* Shared_doctor */ = {
+			isa = PBXGroup;
+			children = (
+				0D69BD301A1E25CF0047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.h */,
+				0D69BD311A1E25D00047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.m */,
+				0D69BD2D1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.h */,
+				0D69BD2E1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.m */,
+			);
+			name = Shared_doctor;
+			sourceTree = "<group>";
+		};
+		0D69BD341A1E27EA0047A60B /* MonthlyDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				0D69BD361A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.h */,
+				0D69BD371A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.m */,
+				0D69BD391A1E28920047A60B /* DPCalendarMonthlyDoctorView.h */,
+				0D69BD3A1A1E28920047A60B /* DPCalendarMonthlyDoctorView.m */,
+				0D69BD351A1E27F40047A60B /* Cells_Doctor */,
+			);
+			name = MonthlyDoctor;
+			sourceTree = "<group>";
+		};
+		0D69BD351A1E27F40047A60B /* Cells_Doctor */ = {
+			isa = PBXGroup;
+			children = (
+				0D69BD421A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.h */,
+				0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */,
+				0D69BD3F1A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.h */,
+				0D69BD401A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m */,
+				0D69BD3C1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.h */,
+				0D69BD3D1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m */,
+			);
+			name = Cells_Doctor;
+			sourceTree = "<group>";
+		};
 		84010BCE1A1C99AA009996A4 /* ClinicReportRequests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1282,6 +1344,10 @@
 		84589EFE1A11F2CC00612BBA = {
 			isa = PBXGroup;
 			children = (
+				0D69BD341A1E27EA0047A60B /* MonthlyDoctor */,
+				0D69BD331A1E27760047A60B /* Shared_doctor */,
+				0D69BD2A1A1E245C0047A60B /* DPCalendarTestDoctorViewController.h */,
+				0D69BD2B1A1E245C0047A60B /* DPCalendarTestDoctorViewController.m */,
 				84F10A2C1A1CCD4F00D5EE22 /* ClinicHolidaySettings */,
 				ECBA106C1A1CADAC00E4AB41 /* DPCalendar_View */,
 				84010C161A1CA3D9009996A4 /* ClinicAppointments */,
@@ -1449,6 +1515,7 @@
 			isa = PBXGroup;
 			children = (
 				84F10A2A1A1CC35400D5EE22 /* setting.png */,
+				0D69BD271A1E1F720047A60B /* help.png */,
 				849C0E741A1B651600F4461E /* add appointment.png */,
 				849C0E751A1B651600F4461E /* view appointments.png */,
 				0D69BD251A1E0C7B0047A60B /* close.png */,
@@ -1720,6 +1787,7 @@
 				ECBA10931A1CAE0500E4AB41 /* IconCamera.png in Resources */,
 				84010BE91A1C9AEE009996A4 /* Clinic_View_Appointments_Storyboard.storyboard in Resources */,
 				8442B92D1A14D8F000785A13 /* Download.png in Resources */,
+				0D69BD281A1E1F720047A60B /* help.png in Resources */,
 				84589F501A121B4400612BBA /* BasicInformation.storyboard in Resources */,
 				8442B9271A14C70500785A13 /* sign_in.PNG in Resources */,
 				8442B92E1A14D8F000785A13 /* OrderNow.png in Resources */,
@@ -1817,6 +1885,7 @@
 				ECBA10B21A1CAE6500E4AB41 /* DPCalendarTestNavViewController.m in Sources */,
 				8410849E1A13458000652C08 /* FFEventDetailView.m in Sources */,
 				841084EE1A13489E00652C08 /* FFWeekScrollView.m in Sources */,
+				0D69BD381A1E284D0047A60B /* DPCalendarMonthlySingleMonthDoctorViewLayout.m in Sources */,
 				84010BFC1A1C9B14009996A4 /* Clinic_Patient_Table_ContentViewController.m in Sources */,
 				841084D01A1347F500652C08 /* FFMonthCalendarView.m in Sources */,
 				8404BC241A1B0F2C00AC04A5 /* DoctorPatientRecordsViewController.m in Sources */,
@@ -1854,6 +1923,7 @@
 				841084BC1A1346EE00652C08 /* FFYearCollectionViewFlowLayout.m in Sources */,
 				841084A81A13462900652C08 /* UIColor+FFMoreColors.m in Sources */,
 				8442B91F1A14B5E100785A13 /* SVSegmentedThumb.m in Sources */,
+				0D69BD441A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m in Sources */,
 				84010C0F1A1C9B64009996A4 /* Clinic_Ask_UsViewController.m in Sources */,
 				849C0E8D1A1B73F600F4461E /* DoctorTodayAppointmentDetailedViewController.m in Sources */,
 				ECBA10B11A1CAE6500E4AB41 /* DPCalendarTestCreateEventViewController.m in Sources */,
@@ -1878,8 +1948,10 @@
 				8429E7491A1A3686003DBF5D /* Patientdetailcell.m in Sources */,
 				8404BC2C1A1B13FF00AC04A5 /* DoctorPatientRecordDetailViewController.m in Sources */,
 				849E2D4B1A1B811D00ED94C3 /* TodayViewController.m in Sources */,
+				0D69BD2C1A1E245C0047A60B /* DPCalendarTestDoctorViewController.m in Sources */,
 				849C0E731A1B510600F4461E /* DetailedPatientReportViewController.m in Sources */,
 				841084551A13425700652C08 /* FFButtonAddEventWithPopover.m in Sources */,
+				0D69BD3E1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m in Sources */,
 				841085191A1349AD00652C08 /* FFDayCollectionView.m in Sources */,
 				ECBA107C1A1CADCE00E4AB41 /* NSDate+DP.m in Sources */,
 				8429E7361A19D7D6003DBF5D /* DoctorDashboard.m in Sources */,
@@ -1901,8 +1973,10 @@
 				84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */,
 				ECBA107A1A1CADCE00E4AB41 /* DPCalendarIconEvent.m in Sources */,
 				8410844E1A13423600652C08 /* FFCalendarViewController.m in Sources */,
+				0D69BD2F1A1E25A30047A60B /* DPCalendarTestCreateEventDoctorViewController.m in Sources */,
 				841084941A13454A00652C08 /* FFGuestsTableViewCell.m in Sources */,
 				8429E71E1A19BC48003DBF5D /* SHLineView.m in Sources */,
+				0D69BD3B1A1E28920047A60B /* DPCalendarMonthlyDoctorView.m in Sources */,
 				841084BB1A1346EE00652C08 /* FFYearCollectionView.m in Sources */,
 				84010C1F1A1CA411009996A4 /* Clinic_Appointments_Table_CellViewController.m in Sources */,
 				8442B9351A14E1C700785A13 /* ViewMedicalRecordsTableViewCell.m in Sources */,
@@ -1936,8 +2010,10 @@
 				8429E7201A19BC48003DBF5D /* SHMenuItem.m in Sources */,
 				841085231A134C9800652C08 /* FFHourPopoverController.m in Sources */,
 				841084AD1A13463600652C08 /* FFDateManager.m in Sources */,
+				0D69BD321A1E25D00047A60B /* DPCalendarTestOptionsCellDoctorTableViewCell.m in Sources */,
 				84010BE81A1C9AEE009996A4 /* Clinic_Detail_View_AppointmentsViewController.m in Sources */,
 				849C0E831A1B6EA600F4461E /* DoctorViewDetailedAppointmentViewController.m in Sources */,
+				0D69BD411A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m in Sources */,
 				8429E7241A19BC48003DBF5D /* UIApplication+AppDimensions.m in Sources */,
 				8404BC291A1B12B600AC04A5 /* DoctorPatientRecordCellViewController.m in Sources */,
 				ECBA10A11A1CAE2900E4AB41 /* DPCalendarMonthlySingleMonthCell.m in Sources */,

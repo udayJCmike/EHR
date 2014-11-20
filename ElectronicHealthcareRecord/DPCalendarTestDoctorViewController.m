@@ -1,23 +1,19 @@
 //
-//  DPCalendarTestViewController.m
-//  DPCalendar
+//  DPCalendarTestDoctorViewController.m
+//  ElectronicHealthcareRecord
 //
-//  Created by Ethan Fang on 19/12/13.
-//  Copyright (c) 2013 Ethan Fang. All rights reserved.
+//  Created by DeemsysInc on 11/20/14.
+//  Copyright (c) 2014 Deemsysinc. All rights reserved.
 //
 
-#import "DPCalendarTestViewController.h"
-#import "DPCalendarMonthlySingleMonthViewLayout.h"
-
-#import "DPCalendarMonthlyView.h"
+#import "DPCalendarTestDoctorViewController.h"
+#import "DPCalendarMonthlySingleMonthDoctorViewLayout.h"
+#import "DPCalendarMonthlyDoctorView.h"
 #import "DPCalendarEvent.h"
 #import "DPCalendarIconEvent.h"
 #import "NSDate+DP.h"
-#import "DPCalendarTestOptionsViewController.h"
-#import "DPCalendarTestCreateEventViewController.h"
-
-
-@interface DPCalendarTestViewController ()<DPCalendarMonthlyViewDelegate, DPCalendarTestCreateEventViewControllerDelegate>
+#import "DPCalendarTestCreateEventDoctorViewController.h"
+@interface DPCalendarTestDoctorViewController ()<DPCalendarMonthlyDoctorViewDelegate, DPCalendarTestCreateEventDoctorViewControllerDelegate>
 {
     NSDate *selected_date;
     ElectronicHealthcareRecordAppDelegate *delegate;
@@ -34,11 +30,11 @@
 @property (nonatomic, strong) NSMutableArray *events;
 @property (nonatomic, strong) NSMutableArray *iconEvents;
 
-@property (nonatomic, strong) DPCalendarMonthlyView *monthlyView;
+@property (nonatomic, strong) DPCalendarMonthlyDoctorView *monthlyView;
 
 @end
 
-@implementation DPCalendarTestViewController
+@implementation DPCalendarTestDoctorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -90,19 +86,17 @@
     self.todayButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.optionsButton  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // self.createEventButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   // [self.createEventButton setBackgroundImage:[UIImage imageNamed:@"BtnAddSomething"] forState:UIControlStateNormal];
-    
+    //self.createEventButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.createEventButton setBackgroundImage:[UIImage imageNamed:@"BtnAddSomething"] forState:UIControlStateNormal];
     self.previousButton.frame = CGRectMake(self.monthLabel.frame.origin.x - 18, 20, 18, 20);
     self.nextButton.frame = CGRectMake(CGRectGetMaxX(self.monthLabel.frame), 20, 18, 20);
     self.todayButton.frame = CGRectMake(width - 60, 20, 60, 21);
-    self.backButton.frame = CGRectMake(60, 20, 50, 20);
+    self.backButton.frame = CGRectMake(40, 20, 50, 20);
     //    self.optionsButton.frame = CGRectMake(width - 50 * 3, 20, 50, 20);
-  //  self.createEventButton.frame = CGRectMake(10, 20, 50, 20);
+    //self.createEventButton.frame = CGRectMake(10, 20, 20, 20);
     [self.todayButton setTitle:@"Today" forState:UIControlStateNormal];
     [self.optionsButton setTitle:@"Option" forState:UIControlStateNormal];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-   // [self.createEventButton setTitle:@"Help" forState:UIControlStateNormal];
     
     
     
@@ -111,7 +105,7 @@
     [self.todayButton addTarget:self action:@selector(todayButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton addTarget:self action:@selector(backButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     //  [self.optionsButton addTarget:self action:@selector(optionsButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
-      // [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
+    //   [self.createEventButton addTarget:self action:@selector(createEventButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.monthLabel];
     [self.view addSubview:self.previousButton];
@@ -121,7 +115,7 @@
     //    [self.view addSubview:self.optionsButton];
     [self.view addSubview:self.createEventButton];
     [self.monthlyView removeFromSuperview];
-    self.monthlyView = [[DPCalendarMonthlyView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) delegate:self];
+    self.monthlyView = [[DPCalendarMonthlyDoctorView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) delegate:self];
     [self.view addSubview:self.monthlyView];
     
     [self.monthlyView setEvents:self.events complete:nil];
@@ -166,7 +160,6 @@
 
 - (void) backButtonSelected:(id)button {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 -(void) previousButtonSelected:(id)button {
@@ -181,25 +174,10 @@
     [self.monthlyView clickDate:[NSDate date]];
 }
 
--(void) optionsButtonSelected:(id)button {
-    DPCalendarTestOptionsViewController *optionController = [DPCalendarTestOptionsViewController new];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:optionController];
-    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn setTitle:@"TEST" forState:UIControlStateNormal];
-    rightBtn.frame = CGRectMake(0, 0, 70, 40 );
-    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    navController.navigationItem.rightBarButtonItem = rightBarBtn;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        [self presentViewController:navController animated:YES completion:nil];
-    } else {
-        
-    }
-}
+
 
 - (void) createEventButtonSelected:(DPCalendarEvent *)dynamic_event {
-    DPCalendarTestCreateEventViewController *createEventController = [DPCalendarTestCreateEventViewController new];
+    DPCalendarTestCreateEventDoctorViewController *createEventController = [DPCalendarTestCreateEventDoctorViewController new];
     createEventController.delegate = self;
     
     createEventController.event=dynamic_event;
@@ -220,26 +198,25 @@
     
 }
 //- (void) createEventButton:(id *)sender {
-//    
-////    DPCalendarTestCreateEventViewController *createEventController = [DPCalendarTestCreateEventViewController new];
-////    createEventController.delegate = self;
-////
-////
-////    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createEventController];
-////    navController.modalPresentationStyle = UIModalPresentationFormSheet;
-////      [navController topViewController].title = @"Create Appointment";
-////    if (isUpdating) {
-////          [navController topViewController].title = @"Reschedule Appointment";
-////    }
-////
-////    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-////    [rightBtn setTitle:@"Done" forState:UIControlStateNormal];
-////    rightBtn.frame = CGRectMake(0, 0, 70, 40 );
-////    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-////    navController.navigationItem.rightBarButtonItem = rightBarBtn;
-////    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-////        [self presentViewController:navController animated:YES completion:nil];
-////    }
+//    DPCalendarTestCreateEventViewControllerDoctor *createEventController = [DPCalendarTestCreateEventViewControllerDoctor new];
+//    createEventController.delegate = self;
+//
+//
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:createEventController];
+//    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+//      [navController topViewController].title = @"Create Appointment";
+//    if (isUpdating) {
+//          [navController topViewController].title = @"Reschedule Appointment";
+//    }
+//
+//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightBtn setTitle:@"Done" forState:UIControlStateNormal];
+//    rightBtn.frame = CGRectMake(0, 0, 70, 40 );
+//    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+//    navController.navigationItem.rightBarButtonItem = rightBarBtn;
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+//        [self presentViewController:navController animated:YES completion:nil];
+//    }
 //
 //}
 - (void)viewDidLoad
@@ -248,7 +225,7 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     IndexOfUpdatedEvent=0;
     isUpdating=FALSE;
-    delegate=AppDelegate;
+    
     [self updateLabelWithMonth:self.monthlyView.seletedMonth];
 }
 
@@ -259,7 +236,7 @@
     [self.monthLabel setText:stringFromDate];
 }
 
-#pragma DPCalendarMonthlyViewDelegate
+#pragma DPCalendarMonthlyViewDoctorDelegate
 -(void)didScrollToMonth:(NSDate *)month firstDate:(NSDate *)firstDate lastDate:(NSDate *)lastDate{
     [self updateLabelWithMonth:month];
 }
@@ -268,8 +245,60 @@
     [self updateLabelWithMonth:month];
 }
 
--(void)didTapEvent:(DPCalendarEvent *)event onDate:(NSDate *)date {
+-(void)didTapEvent:(DPCalendarEvent *)event onDate:(NSDate *)date
+{
+    response_date=date;
+    DidTapWithReschedule=FALSE;
     NSLog(@"Touched event %@, date %@", event.title, date);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate  *today=[[NSDate date]dateByAddingYears:0 months:0 days:0];
+    NSDate *s_date=[date dateByAddingYears:0 months:0 days:1];
+    NSDate *s_date1=[date dateByAddingYears:0 months:0 days:0];
+    NSString *selected_string=[formatter stringFromDate:s_date1];
+    NSDateFormatter *weekFormatter = [[NSDateFormatter alloc] init] ;
+    [weekFormatter setDateFormat:@"EEEE"];
+    NSString *weekday= [weekFormatter stringFromDate:s_date1];
+    // NSLog(@"Select date %@ and status %hhd",selected_string,[delegate.ListOfHolidays containsObject:selected_string]);
+    //     NSLog(@"Select date %@ with  today date %@", s_date, today);
+    if (([s_date compare:today]==NSOrderedAscending)||([weekday isEqualToString:@"Sunday"])||([weekday isEqualToString:@"Saturday"]))
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if([delegate.ListOfHolidays containsObject:selected_string])
+    {
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]])
+    {
+        NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]];
+        if ([status_for_date isEqualToString:@"Available"])
+        {
+            isUpdating=TRUE;
+            IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
+            [self createEventButtonSelected:event];
+        }
+        else if ([status_for_date isEqualToString:@"Waiting"])
+        {
+            DidTapWithReschedule=TRUE;
+            DidTapEvent=event;
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Your appointment will be in waiting status.Would you like to proceed?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+            [alert show];
+        }
+        else if ([status_for_date isEqualToString:@"Full"])
+        {
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        isUpdating=TRUE;
+        IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
+        [self createEventButtonSelected:event];
+    }
 }
 
 -(BOOL)shouldHighlightItemWithDate:(NSDate *)date {
@@ -281,7 +310,7 @@
 }
 
 -(void)didSelectItemWithDate:(NSDate *)date {
-    //NSLog(@"Select date %@ with \n events %@ \n and icon events %@", date, [self.monthlyView eventsForDay:date], [self.monthlyView iconEventsForDay:date]);
+    // NSLog(@"Select date %@ with \n events %@ \n and icon events %@", date, [self.monthlyView eventsForDay:date], [self.monthlyView iconEventsForDay:date]);
     response_date=date;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
@@ -309,27 +338,14 @@
         NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:s_date1]];
         if ([status_for_date isEqualToString:@"Available"])
         {
-            if (![self.monthlyView eventsForDay:date]) {
-                isUpdating=FALSE;
-                selected_date=[date dateByAddingYears:0 months:0 days:0];
-                DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
-                [self createEventButtonSelected:event1];
-                
-            }
-            else
-            {
-            NSArray *listOfeventsForDay=[self.monthlyView eventsForDay:date];
-            if ([listOfeventsForDay count]>0) {
-                DPCalendarEvent *event=[listOfeventsForDay objectAtIndex:0];
-                //            NSLog(@"Selected event datas title %@ with \n s_date %@ \n and e_time %@", event.title, event.startTime,event.endTime);
-                isUpdating=TRUE;
-                IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
-                [self createEventButtonSelected:event];
-            }
-            }
+            isUpdating=FALSE;
+            selected_date=[date dateByAddingYears:0 months:0 days:0];
+            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+            [self createEventButtonSelected:event1];
         }
         else if ([status_for_date isEqualToString:@"Waiting"])
         {
+            DidTapWithReschedule=FALSE;
             UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Your appointment will be in waiting status.Would you like to proceed?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
             [alert show];
         }
@@ -339,7 +355,6 @@
             [alert show];
         }
     }
-    
     else if (![self.monthlyView eventsForDay:date]) {
         isUpdating=FALSE;
         selected_date=[date dateByAddingYears:0 months:0 days:0];
@@ -347,47 +362,25 @@
         [self createEventButtonSelected:event1];
         
     }
-    else
-    {
-        
-        
-        NSArray *listOfeventsForDay=[self.monthlyView eventsForDay:date];
-        if ([listOfeventsForDay count]>0) {
-            DPCalendarEvent *event=[listOfeventsForDay objectAtIndex:0];
-            //            NSLog(@"Selected event datas title %@ with \n s_date %@ \n and e_time %@", event.title, event.startTime,event.endTime);
-            isUpdating=TRUE;
-            IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
-            [self createEventButtonSelected:event];
-        }
-        
-        
-    }
+    
+    
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==1)
     {
-        if (![self.monthlyView eventsForDay:response_date]) {
+        if (DidTapWithReschedule==TRUE) {
+            isUpdating=TRUE;
+            IndexOfUpdatedEvent= [self FindIndexOfEvent:DidTapEvent];
+            [self createEventButtonSelected:DidTapEvent];
+        }
+        else
+        {
             isUpdating=FALSE;
             selected_date=[response_date dateByAddingYears:0 months:0 days:0];
             DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Waiting for app" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
             [self createEventButtonSelected:event1];
-            
         }
-        else
-        {
-            
-            
-            NSArray *listOfeventsForDay=[self.monthlyView eventsForDay:response_date];
-            if ([listOfeventsForDay count]>0) {
-                DPCalendarEvent *event=[listOfeventsForDay objectAtIndex:0];
-                //            NSLog(@"Selected event datas title %@ with \n s_date %@ \n and e_time %@", event.title, event.startTime,event.endTime);
-                isUpdating=TRUE;
-                IndexOfUpdatedEvent= [self FindIndexOfEvent:event];
-                [self createEventButtonSelected:event];
-            }
-        }
-       // NSLog(@"alert in test");
     }
     else if (buttonIndex==0)
     {
@@ -426,14 +419,14 @@
 
 -(NSDictionary *) ipadMonthlyViewAttributes {
     return @{
-             DPCalendarMonthlyViewAttributeCellRowHeight: @23,
-             //             DPCalendarMonthlyViewAttributeEventDrawingStyle: [NSNumber numberWithInt:DPCalendarMonthlyViewEventDrawingStyleUnderline],
-             DPCalendarMonthlyViewAttributeStartDayOfWeek: @1,
-             DPCalendarMonthlyViewAttributeWeekdayFont: [UIFont systemFontOfSize:18],
-             DPCalendarMonthlyViewAttributeDayFont: [UIFont systemFontOfSize:14],
-             DPCalendarMonthlyViewAttributeEventFont: [UIFont systemFontOfSize:14],
-             DPCalendarMonthlyViewAttributeMonthRows:@5,
-             DPCalendarMonthlyViewAttributeIconEventBkgColors: @[[UIColor clearColor], [UIColor colorWithRed:239/255.f green:239/255.f blue:244/255.f alpha:1]]
+             DPCalendarMonthlyViewAttributeCellRowHeightDoctor: @23,
+          
+             DPCalendarMonthlyViewAttributeStartDayOfWeekDoctor: @1,
+             DPCalendarMonthlyViewAttributeWeekdayFontDoctor: [UIFont systemFontOfSize:18],
+             DPCalendarMonthlyViewAttributeDayFontDoctor: [UIFont systemFontOfSize:14],
+             DPCalendarMonthlyViewAttributeEventFontDoctor: [UIFont systemFontOfSize:14],
+             DPCalendarMonthlyViewAttributeMonthRowsDoctor:@5,
+             DPCalendarMonthlyViewAttributeIconEventBkgColorsDoctor: @[[UIColor clearColor], [UIColor colorWithRed:239/255.f green:239/255.f blue:244/255.f alpha:1]]
              
              
              };
@@ -441,9 +434,9 @@
 
 -(NSDictionary *) iphoneMonthlyViewAttributes {
     return @{
-             DPCalendarMonthlyViewAttributeEventDrawingStyle: [NSNumber numberWithInt:DPCalendarMonthlyViewEventDrawingStyleUnderline],
-             DPCalendarMonthlyViewAttributeCellNotInSameMonthSelectable: @YES,
-             DPCalendarMonthlyViewAttributeMonthRows:@3
+//             DPCalendarMonthlyViewAttributeEventDrawingStyleDoctor: [NSNumber numberWithInt:DPCalendarMonthlyViewEventDrawingStyleUnderline],
+//             DPCalendarMonthlyViewAttributeCellNotInSameMonthSelectableDoctor: @YES,
+//             DPCalendarMonthlyViewAttributeMonthRowsDoctor:@3
              };
     
 }
@@ -473,6 +466,7 @@
     return size;
 }
 
+
 #pragma mark - DPCalendarTestCreateEventViewControllerDelegate
 -(void)eventCreated:(DPCalendarEvent *)event {
     if (isUpdating) {
@@ -483,10 +477,11 @@
     else
     {
         [self.events addObject:event];
-          self.monthlyView.MultipletimeReloading=TRUE;
+        self.monthlyView.MultipletimeReloading=TRUE;
         [self.monthlyView setEvents:self.events complete:nil];
     }
 }
+
 
 
 #pragma mark - Rotation

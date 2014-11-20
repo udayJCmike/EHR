@@ -1,0 +1,1019 @@
+//
+//  DPCalendarMonthlyDoctorView.m
+//  ElectronicHealthcareRecord
+//
+//  Created by DeemsysInc on 11/20/14.
+//  Copyright (c) 2014 Deemsysinc. All rights reserved.
+//
+
+#import "DPCalendarMonthlyDoctorView.h"
+#import "DPCalendarMonthlySingleMonthDoctorViewLayout.h"
+#import "NSDate+DP.h"
+#import "DPCalendarEvent.h"
+#import "DPCalendarIconEvent.h"
+#import "DPConstants.h"
+#import "DPCalendarMonthlyWeekdayCellDoctor.h"
+
+
+
+NSString *const DPCalendarMonthlyViewAttributeWeekdayHeightDoctor = @"DPCalendarMonthlyViewAttributeWeekdayHeightDoctor";
+NSString *const DPCalendarMonthlyViewAttributeWeekdayFontDoctor = @"DPCalendarMonthlyViewAttributeWeekdayFontDoctor";
+
+NSString *const DPCalendarMonthlyViewAttributeCellTodayBannerBkgColorDoctor = @"DPCalendarMonthlyViewAttributeCellTodayBannerBkgColorDoctor";
+
+NSString *const DPCalendarMonthlyViewAttributeCellHeightDoctor = @"DPCalendarMonthlyViewAttributeCellHeightDoctor";
+NSString *const DPCalendarMonthlyViewAttributeDayFontDoctor= @"DPCalendarMonthlyViewAttributeDayFontDoctor";
+NSString *const DPCalendarMonthlyViewAttributeDayTextColorDoctor = @"DPCalendarMonthlyViewAttributeDayTextColorDoctor";
+NSString *const DPCalendarMonthlyViewAttributeEventFontDoctor = @"DPCalendarMonthlyViewAttributeEventFontDoctor";
+NSString *const DPCalendarMonthlyViewAttributeCellRowHeightDoctor = @"DPCalendarMonthlyViewAttributeCellRowHeightDoctor";
+NSString *const DPCalendarMonthlyViewAttributeEventColorsDoctor = @"DPCalendarMonthlyViewAttributeEventColorsDoctor";
+NSString *const DPCalendarMonthlyViewAttributeIconEventFontDoctor = @"DPCalendarMonthlyViewAttributeIconEventFontDoctor";
+NSString *const DPCalendarMonthlyViewAttributeIconEventBkgColorsDoctor = @"DPCalendarMonthlyViewAttributeIconEventBkgColorsDoctor";
+NSString *const DPCalendarMonthlyViewAttributeIconEventMarginXDoctor = @"DPCalendarMonthlyViewAttributeIconEventMarginXDoctor";
+NSString *const DPCalendarMonthlyViewAttributeIconEventMarginYDoctor = @"DPCalendarMonthlyViewAttributeIconEventMarginYDoctor";
+NSString *const DPCalendarMonthlyViewAttributeCellNotInSameMonthColorDoctor = @"DPCalendarMonthlyViewAttributeCellNotInSameMonthColorDoctor";
+NSString *const DPCalendarMonthlyViewAttributeCellHighlightedColorDoctor = @"DPCalendarMonthlyViewAttributeCellHighlightedColorDoctor";
+NSString *const DPCalendarMonthlyViewAttributeCellSelectedColorDoctor = @"DPCalendarMonthlyViewAttributeCellSelectedColorDoctor";
+NSString *const DPCalendarMonthlyViewAttributeCellNotInSameMonthSelectableDoctor = @"DPCalendarMonthlyViewAttributeCellNotInSameMonthSelectableDoctor";
+NSString *const DPCalendarMonthlyViewAttributeEventDrawingStyleDoctor = @"DPCalendarMonthlyViewAttributeEventDrawingStyleDoctor";
+
+NSString *const DPCalendarMonthlyViewAttributeSeparatorColorDoctor = @"DPCalendarMonthlyViewAttributeSeparatorColorDoctor";
+
+NSString *const DPCalendarMonthlyViewAttributeStartDayOfWeekDoctor = @"DPCalendarMonthlyViewAttributeStartDayOfWeekDoctor";
+NSString *const DPCalendarMonthlyViewAttributeMonthRowsDoctor = @"DPCalendarMonthlyViewAttributeMonthRowsDoctor";
+
+NSString *const DPCalendarViewWeekDayCellIdentifierDoctor = @"DPCalendarViewWeekDayCellIdentifierDoctor";
+NSString *const DPCalendarViewDayCellIdentifierDoctor = @"DPCalendarViewDayCellIdentifierDoctor";
+
+
+/* Defaults */
+
+static NSInteger const DPCalendarMonthlyViewAttributeCellHeightDefaultDoctor = 70;
+static NSInteger const DPCalendarDefaultSystemFontSizeDoctor = 12;
+static NSInteger const DPCalendarMonthlyViewAttributeWeekdayHeightDefaultDoctor = 20;
+static NSInteger const DPCalendarMonthlyViewAttributeCellRowHeightDefaultDoctor = 18;
+static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor= 0; //Sunday
+
+
+/* Other constants */
+
+#define ICON_EVENT_VERTICAL_MARGIN 3.0f
+#define ICON_EVENT_HORIZONTAL_MARGIN 4.0f
+
+#define MONTH_VIEW_COUNT 11
+#define CURERNT_MONTH_VIEW_POSITION (MONTH_VIEW_COUNT / 2)
+
+@interface DPCalendarMonthlyDoctorView()<UIScrollViewDelegate, UICollectionViewDelegate, DPCalendarMonthlySingleMonthCellDoctorDelegate>
+
+//Customize properties
+@property (nonatomic) CGFloat cellHeight;
+@property (nonatomic) CGFloat weekdayHeight;
+@property (nonatomic, strong) UIFont *weekdayFont;
+@property (nonatomic) int startDayOfWeek;
+
+@property (nonatomic, strong) UIFont *dayFont;
+@property (nonatomic, strong) UIColor *dayTextColor;
+@property (nonatomic, strong) UIFont *eventFont;
+@property (nonatomic) CGFloat rowHeight;
+@property (nonatomic, strong) NSArray *eventColors;
+@property (nonatomic, strong) UIFont *iconEventFont;
+@property (nonatomic, strong) NSArray *iconEventBkgColors;
+@property(nonatomic) CGFloat iconEventMarginX;
+@property(nonatomic) CGFloat iconEventMarginY;
+@property (nonatomic) DPCalendarMonthlyViewEventDrawingStyle eventDrawingStyle;
+@property (nonatomic, strong) UIColor *todayBannerBkgColorGreen;
+@property (nonatomic, strong) UIColor *todayBannerBkgColorRed;
+@property (nonatomic, strong) UIColor *todayBannerBkgColorYellow;
+@property (nonatomic, strong) UIColor *todayBannerBkgColor;
+@property (nonatomic, strong) UIColor *notInSameMonthColor;
+@property (nonatomic, strong) UIColor *selectedColor;
+@property (nonatomic, strong) UIColor *highlightedColor;
+@property (nonatomic, strong) UIColor *separatorColor;
+
+@property (nonatomic) BOOL isNoInSameMonthCellSeletable;
+
+//3 UICollectionViews
+@property (nonatomic, strong) NSMutableArray *pagingMonths;
+@property (nonatomic, strong) NSMutableArray *pagingViews;
+
+@property(nonatomic,strong,readwrite) NSArray *weekdaySymbols;
+
+
+@property (nonatomic, strong) NSDate *selectedDate;
+@property (nonatomic, strong) NSCalendar *calendar;
+
+@property(nonatomic) NSUInteger daysInWeek;
+
+
+@property (nonatomic) NSUInteger maxEventsPerDay;
+@property (nonatomic, strong) NSOperationQueue *processQueue;
+
+@property (nonatomic, strong) NSDictionary *eventsForEachDay;
+@property (nonatomic, strong) NSDictionary *iconEventsForEachDay;
+
+@end
+
+
+@implementation DPCalendarMonthlyDoctorView
+
+- (id)initWithFrame:(CGRect)frame delegate:(id<DPCalendarMonthlyDoctorViewDelegate>)monthViewDelegate {
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        delegate=AppDelegate;
+        [self commonInit];
+        self.monthlyViewDelegate = monthViewDelegate;
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+#pragma mark - Getters and Setters
+
+- (NSMutableArray*) pagingMonths {
+    
+    if (!_pagingMonths) {
+        _pagingMonths = [[NSMutableArray alloc]init];
+    }
+    return _pagingMonths;
+}
+
+
+- (NSMutableArray*) pagingViews {
+    if (!_pagingViews) {
+        _pagingViews = [[NSMutableArray alloc]init];
+    }
+    return _pagingViews;
+}
+
+
+- (void)setMonthlyViewBackgroundColor:(UIColor *)monthlyViewBackgroundColor {
+    _monthlyViewBackgroundColor = monthlyViewBackgroundColor;
+    self.backgroundColor = _monthlyViewBackgroundColor;
+}
+
+
+- (NSDate*) seletedMonth {
+    return [self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+}
+
+- (NSOperationQueue*) processQueue {
+    
+    if (!_processQueue) {
+        _processQueue = [[NSOperationQueue alloc] init];
+        _processQueue.maxConcurrentOperationCount = 4;
+        _processQueue.name = @"DPCalendar Events Processing";
+    }
+    
+    return _processQueue;
+}
+
+-(void)setMonthlyViewDelegate:(id<DPCalendarMonthlyDoctorViewDelegate>)monthlyViewDelegate {
+    _monthlyViewDelegate = monthlyViewDelegate;
+    [self applyCustomDefaults];
+}
+
+- (void) resetViews {
+    [self.pagingViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj removeFromSuperview];
+    }];
+    
+    _pagingViews = nil;
+    _pagingMonths = nil;
+    
+    [self commonInit];
+    [self applyCustomDefaults];
+}
+
+#pragma mark - Initial Config
+
+- (void) commonInit {
+    
+    [self applyDefaults];
+    
+    NSDate *today = [NSDate date];
+    
+    int count = MONTH_VIEW_COUNT;
+    for (int i = 0; i < count; i++) {
+        [self.pagingMonths addObject:[today dateByAddingYears:0 months:(i - count / 2) days:0]];
+        [self.pagingViews addObject:[self singleMonthViewInFrame:CGRectMake(self.bounds.size.width * i, 0, self.bounds.size.width, self.bounds.size.height)]];
+    }
+    
+    [self.pagingViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self addSubview:obj];
+    }];
+    
+    [self setContentSize:CGSizeMake(self.bounds.size.width * count, self.bounds.size.height)];
+    [self scrollRectToVisible:((UIView *)[self.pagingViews objectAtIndex:count / 2]).frame animated:NO];
+}
+
+
+- (void) applyDefaults {
+    
+    self.maxEventsPerDay = 10;
+    self.daysInWeek = 7;
+    self.calendar   = NSCalendar.currentCalendar;
+    self.weekdaySymbols = [[[NSDateFormatter alloc] init] shortWeekdaySymbols];
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.monthlyViewBackgroundColor = [UIColor whiteColor];
+    
+    self.showsHorizontalScrollIndicator = NO;
+    self.clipsToBounds = YES;
+    self.contentInset = UIEdgeInsetsZero;
+    self.pagingEnabled = YES;
+    self.delegate = self;
+}
+
+
+- (void) applyCustomDefaults {
+    
+    NSDictionary *attributes;
+    
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(monthlyViewAttributes)]) {
+        
+        attributes = [self.monthlyViewDelegate monthlyViewAttributes];
+    }
+    
+    self.startDayOfWeek = attributes[DPCalendarMonthlyViewAttributeStartDayOfWeekDoctor] ? [attributes[DPCalendarMonthlyViewAttributeStartDayOfWeekDoctor]integerValue] : DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor;
+    self.weekdayHeight = attributes[DPCalendarMonthlyViewAttributeWeekdayHeightDoctor] ? [attributes[DPCalendarMonthlyViewAttributeWeekdayHeightDoctor]floatValue] : DPCalendarMonthlyViewAttributeWeekdayHeightDefaultDoctor;
+    self.rowHeight = attributes[DPCalendarMonthlyViewAttributeCellRowHeightDoctor] ? [attributes[DPCalendarMonthlyViewAttributeCellRowHeightDoctor]floatValue] :  DPCalendarMonthlyViewAttributeCellRowHeightDefaultDoctor;
+    
+    if (attributes[DPCalendarMonthlyViewAttributeMonthRowsDoctor]) {
+        NSInteger rows = [attributes[DPCalendarMonthlyViewAttributeMonthRowsDoctor] integerValue];
+        self.cellHeight = (self.bounds.size.height - self.weekdayHeight) / rows;
+    } else {
+        self.cellHeight = [attributes[DPCalendarMonthlyViewAttributeCellHeightDoctor] floatValue] ?: DPCalendarMonthlyViewAttributeCellHeightDefaultDoctor;
+    }
+    
+    self.separatorColor = attributes[DPCalendarMonthlyViewAttributeSeparatorColorDoctor] ?: [self defaultSeparatorColor];
+    self.todayBannerBkgColor = attributes[DPCalendarMonthlyViewAttributeCellTodayBannerBkgColorDoctor] ?: [self defaultTodayBannerBkgColor];
+    self.dayTextColor = attributes[DPCalendarMonthlyViewAttributeDayTextColorDoctor] ?: [self defaultDayTextColor];
+    self.notInSameMonthColor = attributes[DPCalendarMonthlyViewAttributeCellNotInSameMonthColorDoctor] ?: [self defaultNotInSameMonthColor];
+    self.selectedColor = attributes[DPCalendarMonthlyViewAttributeCellSelectedColorDoctor] ?: [self defaultSelectedColor];
+    self.eventColors = attributes[DPCalendarMonthlyViewAttributeEventColorsDoctor] ?: [self defaultEventColors];
+    self.iconEventBkgColors = attributes[DPCalendarMonthlyViewAttributeIconEventBkgColorsDoctor] ?: [self defaultIconEventColors];
+    self.highlightedColor = attributes[DPCalendarMonthlyViewAttributeCellHighlightedColorDoctor] ?: self.selectedColor;
+    
+    self.dayFont = attributes[DPCalendarMonthlyViewAttributeDayFontDoctor] ?: [UIFont systemFontOfSize:DPCalendarDefaultSystemFontSizeDoctor];
+    self.eventFont = attributes[DPCalendarMonthlyViewAttributeEventFontDoctor] ?: [UIFont systemFontOfSize:DPCalendarDefaultSystemFontSizeDoctor];
+    self.weekdayFont = [attributes objectForKey:DPCalendarMonthlyViewAttributeWeekdayFontDoctor] ?: [UIFont systemFontOfSize:DPCalendarDefaultSystemFontSizeDoctor];
+    self.iconEventFont = attributes[DPCalendarMonthlyViewAttributeIconEventFontDoctor] ?: [UIFont systemFontOfSize:DPCalendarDefaultSystemFontSizeDoctor];
+    
+    self.eventDrawingStyle = [attributes[DPCalendarMonthlyViewAttributeEventDrawingStyleDoctor]integerValue] ?: DPCalendarMonthlyViewEventDrawingStyleBar;
+    
+    self.isNoInSameMonthCellSeletable = [[attributes objectForKey:DPCalendarMonthlyViewAttributeCellNotInSameMonthSelectableDoctor]boolValue] ?: NO;
+    
+    self.iconEventMarginX = attributes[DPCalendarMonthlyViewAttributeIconEventMarginXDoctor] ? [attributes[DPCalendarMonthlyViewAttributeIconEventMarginXDoctor]floatValue] : ICON_EVENT_HORIZONTAL_MARGIN;
+    self.iconEventMarginY = attributes[DPCalendarMonthlyViewAttributeIconEventMarginYDoctor] ?[attributes[DPCalendarMonthlyViewAttributeIconEventMarginYDoctor]floatValue] : ICON_EVENT_VERTICAL_MARGIN;
+}
+
+
+- (UICollectionView *)singleMonthViewInFrame:(CGRect )frame {
+    
+    DPCalendarMonthlySingleMonthDoctorViewLayout *layout = [[DPCalendarMonthlySingleMonthDoctorViewLayout alloc] init];
+    UICollectionView *singleMonthView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+    singleMonthView.allowsSelection = YES;
+    singleMonthView.translatesAutoresizingMaskIntoConstraints = NO;
+    singleMonthView.showsHorizontalScrollIndicator = NO;
+    singleMonthView.showsVerticalScrollIndicator = NO;
+    singleMonthView.dataSource = self;
+    singleMonthView.delegate = self;
+    singleMonthView.allowsMultipleSelection = NO;
+    singleMonthView.backgroundColor = [UIColor clearColor];
+    
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(monthlyCellClass)]) {
+        [singleMonthView registerClass:[self.monthlyViewDelegate monthlyCellClass]
+            forCellWithReuseIdentifier:DPCalendarViewDayCellIdentifierDoctor];
+    } else {
+        [singleMonthView registerClass:DPCalendarMonthlySingleMonthCellDoctor.class
+            forCellWithReuseIdentifier:DPCalendarViewDayCellIdentifierDoctor];
+    }
+    
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(monthlyWeekdayClassClass)]) {
+        [singleMonthView registerClass:[self.monthlyViewDelegate monthlyWeekdayClassClass]
+            forCellWithReuseIdentifier:DPCalendarViewWeekDayCellIdentifierDoctor];
+    } else {
+        [singleMonthView registerClass:DPCalendarMonthlyWeekdayCellDoctor.class
+            forCellWithReuseIdentifier:DPCalendarViewWeekDayCellIdentifierDoctor];
+    }
+    
+    return singleMonthView;
+}
+
+- (void) reloadCurrentView {
+    UICollectionView *collectionView = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+    [collectionView reloadData];
+    
+    NSDate *thisMonth = [self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+    NSDate *firstVisibleDate = [self firstVisibleDateOfMonth:thisMonth];;
+    NSDate *lastVisibleDate = [self lastVisibleDateOfMonth:thisMonth];
+    //If needs to select selected date
+    if (self.selectedDate && ([firstVisibleDate compare:self.selectedDate] != NSOrderedDescending) && ([lastVisibleDate compare:self.selectedDate] != NSOrderedAscending)) {
+        NSIndexPath *indexPath = [self indexPathForCurrentMonthWithDate:self.selectedDate];
+        if ([self collectionView:collectionView shouldSelectItemAtIndexPath:indexPath]) {
+            [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+            [self collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+        }
+    } else {
+        [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
+}
+
+- (void) reloadPagingViews {
+    for (int i = CURERNT_MONTH_VIEW_POSITION - 1; i <= CURERNT_MONTH_VIEW_POSITION + 1; i++) {
+        if (i == CURERNT_MONTH_VIEW_POSITION) {
+            continue;
+        }
+        UICollectionView *collectionView = [self.pagingViews objectAtIndex:i];
+        [collectionView reloadData];
+    }
+}
+
+
+
+#pragma mark - Quering Dates
+
+- (NSDate *)firstVisibleDateOfMonth:(NSDate *)date {
+    date = [date dp_firstDateOfMonth:self.calendar];
+    
+    NSDateComponents *components =
+    [self.calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit
+                     fromDate:date];
+    
+    int daysInWeek = self.daysInWeek;
+    int daysDifference = -1 * ((components.weekday - self.startDayOfWeek - 1) % daysInWeek);
+    return [[date dp_dateWithDay:(daysDifference > 0) ? (daysDifference - self.daysInWeek) : daysDifference calendar:self.calendar] dateByAddingTimeInterval:DP_DAY];
+}
+
+- (NSDate *)lastVisibleDateOfMonth:(NSDate *)date {
+    date = [date dp_lastDateOfMonth:self.calendar];
+    
+    NSDateComponents *components =
+    [self.calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit
+                     fromDate:date];
+    
+    int daysInWeek = self.daysInWeek;
+    
+    int daysRemain = (daysInWeek + self.startDayOfWeek - 1) - ((components.weekday - 1) % daysInWeek);
+    daysRemain = daysRemain == 7 ? 0 : daysRemain;
+    return
+    [date dp_dateWithDay:components.day + daysRemain
+                calendar:self.calendar];
+}
+
+- (NSDate *) dateOfCollectionView:(UICollectionView *)collectionView {
+    
+    return [self.pagingMonths objectAtIndex:[self.pagingViews indexOfObject:collectionView]];
+}
+
+
+- (NSIndexPath *) indexPathForCurrentMonthWithDate:(NSDate *)date {
+    NSDate *firstVisibleDate = [self firstVisibleDateOfMonth:[self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION]];
+    NSDateComponents *components =
+    [self.calendar components:NSDayCalendarUnit
+                     fromDate:firstVisibleDate
+                       toDate:date
+                      options:0];
+    
+    return [NSIndexPath indexPathForItem:self.daysInWeek + components.day inSection:0];
+    
+}
+
+
+- (BOOL) isDateInCurrentPresentedMonth: (NSDate*) date {
+    
+    BOOL isInTheCurrentMonth = NO;
+    
+    NSUInteger preservedDay = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+    NSUInteger preservedMonth = (NSYearCalendarUnit | NSMonthCalendarUnit);
+    
+    NSDateComponents *dateCompoments = [self.calendar components:preservedDay fromDate:date];
+    NSDate *dateWithDayOnly = [self.calendar dateFromComponents:dateCompoments];
+    
+    NSDateComponents* currentMonthComponents = [self.calendar components:preservedMonth fromDate:self.pagingMonths[CURERNT_MONTH_VIEW_POSITION]];
+    NSDate* currentPresentedMonth = [self.calendar dateFromComponents:currentMonthComponents];
+    
+    // Last day of the previous month
+    NSDateComponents *compsforPreviousMonth = [self.calendar components:preservedMonth fromDate:currentPresentedMonth];
+    [compsforPreviousMonth setDay:-1];
+    NSDate *lastDayOfThePreviousMonth = [self.calendar dateFromComponents:compsforPreviousMonth];
+    
+    // First day of the next month
+    NSDateComponents *compsforNextMonth = [self.calendar components:preservedMonth fromDate:currentPresentedMonth];
+    [compsforNextMonth setMonth:[compsforNextMonth month]+1];
+    [compsforNextMonth setDay:1];
+    NSDate *firstDayOfNextMonth = [self.calendar dateFromComponents:compsforNextMonth];
+    
+    if ([[dateWithDayOnly earlierDate:lastDayOfThePreviousMonth] isEqualToDate:lastDayOfThePreviousMonth]) {
+        if ([[dateWithDayOnly laterDate:firstDayOfNextMonth] isEqualToDate:firstDayOfNextMonth]) {
+            isInTheCurrentMonth = YES;
+        }
+    }
+    
+    return isInTheCurrentMonth;
+    
+}
+
+#pragma mark - Scrolling
+
+- (void) scrollToMonth:(NSDate *)month complete:(void (^)(void))complete {
+    
+    NSDate *firstDayOfDestinationMonth = [month dp_firstDateOfMonth:self.calendar];
+    NSDate *firstDayOfOriginalMonth = [self.seletedMonth dp_firstDateOfMonth:self.calendar];
+    
+    int scrollToPosition = CURERNT_MONTH_VIEW_POSITION;
+    if ([firstDayOfDestinationMonth compare:firstDayOfOriginalMonth] == NSOrderedDescending) {
+        scrollToPosition = CURERNT_MONTH_VIEW_POSITION + 1;
+    } else if ([firstDayOfDestinationMonth compare:firstDayOfOriginalMonth] == NSOrderedAscending) {
+        scrollToPosition = CURERNT_MONTH_VIEW_POSITION - 1;
+    }
+    if (scrollToPosition == CURERNT_MONTH_VIEW_POSITION) {
+        [self.monthlyViewDelegate didScrollToMonth:[self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION] firstDate:[self firstVisibleDateOfMonth:month] lastDate:[self lastVisibleDateOfMonth:month]];
+        if (complete) {
+            complete();
+        }
+        return;
+    }
+    [self.pagingMonths setObject:month atIndexedSubscript:scrollToPosition];
+    [self.pagingMonths setObject:month atIndexedSubscript:CURERNT_MONTH_VIEW_POSITION];
+    
+    __weak typeof(DPCalendarMonthlyDoctorView) *weakSelf = self;
+    [UIView animateWithDuration:0.2 animations:^{
+        UICollectionView *view = [self.pagingViews objectAtIndex:scrollToPosition];
+        [weakSelf setContentOffset:view.frame.origin];
+    } completion:^(BOOL finished) {
+        [self adjustPreviousAndNextMonthPage];
+        
+        UICollectionView *view = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+        [self scrollRectToVisible:view.frame animated:NO];
+        [self.monthlyViewDelegate didScrollToMonth:[self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION] firstDate:[self firstVisibleDateOfMonth:month] lastDate:[self lastVisibleDateOfMonth:month]];
+        [self reloadCurrentView];
+        [self reloadPagingViews];
+        if (complete) {
+            complete();
+        }
+        
+    }];
+}
+
+
+- (void) scrollToCurrentMonth {
+    NSDate *today = [NSDate new];
+    [self.pagingMonths setObject:today atIndexedSubscript:1];
+    self.selectedDate = today;
+    
+    [self.monthlyViewDelegate didScrollToMonth:today firstDate:[self firstVisibleDateOfMonth:today] lastDate:[self lastVisibleDateOfMonth:today]];
+}
+
+- (void)scrollToPreviousMonthWithComplete:(void (^)(void))complete {
+    
+    NSDate *previousMonth = [[self seletedMonth] dateByAddingYears:0 months:-1 days:0];
+    [self scrollToMonth:previousMonth complete:complete];
+}
+
+
+- (void)scrollToNextMonthWithComplete:(void (^)(void))complete {
+    
+    NSDate *previousMonth = [[self seletedMonth] dateByAddingYears:0 months:1 days:0];
+    [self scrollToMonth:previousMonth complete:complete];
+}
+
+- (void) adjustPreviousAndNextMonthPage {
+    NSDate *currentMonth = [self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+    for (int i = 1; i <= CURERNT_MONTH_VIEW_POSITION; i++) {
+        [self.pagingMonths setObject:[currentMonth dateByAddingYears:0 months:i days:0] atIndexedSubscript:(CURERNT_MONTH_VIEW_POSITION + i)];
+        [self.pagingMonths setObject:[currentMonth dateByAddingYears:0 months:-1 * i days:0] atIndexedSubscript:(CURERNT_MONTH_VIEW_POSITION - i)];
+    }
+}
+
+
+#pragma UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    int position = (self.contentOffset.x / self.bounds.size.width);
+    
+    NSDate *scrolledMonth = [self.pagingMonths objectAtIndex:position];
+    
+    [self.monthlyViewDelegate didSkipToMonth:scrolledMonth firstDate:[self firstVisibleDateOfMonth:scrolledMonth] lastDate:[self lastVisibleDateOfMonth:scrolledMonth]];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender
+{
+    int position = (self.contentOffset.x / self.bounds.size.width);
+    
+    if (position == CURERNT_MONTH_VIEW_POSITION) {
+        return;
+    }
+    
+    NSDate *scrolledMonth = [self.pagingMonths objectAtIndex:position];
+    NSLog(@"Decelerating position %i %@", position, scrolledMonth);
+    [self.pagingMonths setObject:scrolledMonth atIndexedSubscript:CURERNT_MONTH_VIEW_POSITION];
+    [self adjustPreviousAndNextMonthPage];
+    
+    [self.monthlyViewDelegate didScrollToMonth:scrolledMonth firstDate:[self firstVisibleDateOfMonth:scrolledMonth] lastDate:[self lastVisibleDateOfMonth:scrolledMonth]];
+    
+    UIView *view = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+    [self scrollRectToVisible:view.frame animated:NO];
+    [self reloadCurrentView];
+    [self reloadPagingViews];
+}
+
+
+#pragma mark - Events for Colletion Views
+
+- (NSPredicate*) predicateForDate: (NSDate *)date {
+    
+    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+    NSDate *startDate = [self.calendar dateFromComponents:[self.calendar components:preservedComponents fromDate:date]];
+    NSDate *endDate = [self.calendar dateFromComponents:[self.calendar components:preservedComponents fromDate:[date dateByAddingYears:0 months:0 days:1]]];
+    
+    NSPredicate* startDatePredicate = [NSPredicate predicateWithFormat:@"startTime > %@", startDate];
+    NSPredicate* endDatePredicate = [NSPredicate predicateWithFormat:@"endTime < %@", endDate];
+    return [NSCompoundPredicate andPredicateWithSubpredicates:@[startDatePredicate,endDatePredicate]];
+    
+}
+
+- (NSArray*) sortDescriptorsForEvents {
+    // Sorting
+    NSSortDescriptor* startTimeSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    NSSortDescriptor* titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    
+    return @[startTimeSortDescriptor,titleSortDescriptor];
+}
+
+-(NSArray *)eventsForDay:(NSDate *)date {
+    return [self.eventsForEachDay objectForKey:date];
+}
+
+-(NSArray *)iconEventsForDay:(NSDate *)date {
+    return [self.iconEventsForEachDay objectForKey:date];
+}
+
+
+#pragma mark - UICollectionViewDataSource
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSDate *monthDate = [self dateOfCollectionView:collectionView];
+    
+    NSDateComponents *components =
+    [self.calendar components:NSDayCalendarUnit
+                     fromDate:[self firstVisibleDateOfMonth:monthDate]
+                       toDate:[self lastVisibleDateOfMonth:monthDate]
+                      options:0];
+    
+    return self.daysInWeek + components.day + 1;
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat width      = self.bounds.size.width;
+    CGFloat itemWidth  = roundf(width / self.daysInWeek);
+    CGFloat itemHeight = roundf(indexPath.item < self.daysInWeek ? self.weekdayHeight : self.cellHeight);
+    
+    NSUInteger weekday = indexPath.item % self.daysInWeek;
+    
+    if (weekday == self.daysInWeek - 1) {
+        itemWidth = width - (itemWidth * (self.daysInWeek - 1));
+    }
+    
+    return CGSizeMake(itemWidth, itemHeight);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    //     NSLog(@"ListOfappointment_status %@",delegate.ListOfappointment_status);
+    if (indexPath.item < self.daysInWeek) {
+        
+        // Week Header Cells
+        
+        DPCalendarMonthlyWeekdayCellDoctor *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DPCalendarViewWeekDayCellIdentifierDoctor forIndexPath:indexPath];
+        cell.separatorColor = self.separatorColor;
+        cell.font = self.weekdayFont;
+        
+        cell.weekday = self.weekdaySymbols[(indexPath.item + self.startDayOfWeek) % self.daysInWeek];
+        
+        return cell;
+        
+        
+    }
+    else {
+        
+        // Month cells
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        DPCalendarMonthlySingleMonthCellDoctor *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DPCalendarViewDayCellIdentifierDoctor forIndexPath:indexPath];
+        cell.delegate = self;
+        cell.iconEventMarginX = self.iconEventMarginX;
+        cell.iconEventMarginY = self.iconEventMarginY;
+        cell.isFirstRow = indexPath.item < 2 * self.daysInWeek;
+        
+        cell.eventColors = self.eventColors;
+        cell.todayBannerBkgColor = self.todayBannerBkgColor;
+        
+        cell.dayFont = self.dayFont;
+        cell.dayTextColor = self.dayTextColor;
+        cell.eventFont= self.eventFont;
+        cell.rowHeight = self.rowHeight;
+        cell.eventColors = self.eventColors;
+        cell.iconEventFont = self.iconEventFont;
+        cell.iconEventBkgColors = self.iconEventBkgColors;
+        cell.eventDrawingStyle = self.eventDrawingStyle;
+        
+        cell.noInSameMonthColor = self.notInSameMonthColor;
+        cell.selectedColor = self.selectedColor;
+        cell.highlightedColor = self.highlightedColor;
+        
+        cell.firstVisiableDateOfMonth = [self dateForCollectionView:collectionView IndexPath:[NSIndexPath indexPathForItem:self.daysInWeek inSection:0]];
+        cell.todayBannerBkgColor = [UIColor clearColor];
+        cell.isInSameMonth = [self collectionView:collectionView shouldEnableItemAtIndexPath:indexPath];
+        NSDate *date = [self dateForCollectionView:collectionView IndexPath:indexPath];
+        
+        @try {
+            
+            //Set appointment status for different dates
+            
+            if ([delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:date]]) {
+                NSString *status_for_date=[delegate.ListOfappointment_status valueForKey:[formatter stringFromDate:date]];
+                //  NSLog(@"appointment status available for date %@ with value %@ ",[formatter stringFromDate:date],status_for_date);
+                if ([status_for_date isEqualToString:@"Available"]) {
+                    
+                    cell.backgroundColor = [UIColor colorWithRed:0/255.0 green:166/255.0 blue:108/255.0 alpha:1];
+                    // cell.todayBannerBkgColor =[UIColor colorWithRed:0/255.0 green:166/255.0 blue:108/255.0 alpha:1];
+                    cell.dayTextColor =[UIColor whiteColor];
+                    cell.selectedColor =[UIColor colorWithRed:0/255.0 green:166/255.0 blue:108/255.0 alpha:1];
+                    
+                }
+                else if ([status_for_date isEqualToString:@"Waiting"]) {
+                    cell.backgroundColor=  [UIColor colorWithRed:240/255.0 green:230/255.0 blue:140/255.0 alpha:1];
+                    // cell.todayBannerBkgColor = [UIColor colorWithRed:240/255.0 green:230/255.0 blue:140/255.0 alpha:1];
+                    cell.dayTextColor =[UIColor whiteColor];
+                    cell.selectedColor = [UIColor colorWithRed:240/255.0 green:230/255.0 blue:140/255.0 alpha:1];
+                }
+                else if ([status_for_date isEqualToString:@"Full"]) {
+                    cell.backgroundColor =   [UIColor colorWithRed:178/255.0 green:34/255.0 blue:34/255.0 alpha:1];
+                    // cell.todayBannerBkgColor =   [UIColor colorWithRed:178/255.0 green:34/255.0 blue:34/255.0 alpha:1];
+                    cell.dayTextColor =[UIColor whiteColor];
+                    cell.selectedColor  =[UIColor colorWithRed:178/255.0 green:34/255.0 blue:34/255.0 alpha:1];
+                }
+                
+                
+            }
+            else
+            {
+                
+                cell.todayBannerBkgColor = [UIColor clearColor];
+                cell.backgroundColor = [UIColor clearColor];
+                
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Data not found for the given date ");
+        }
+        
+        [cell setDate:date
+             calendar:self.calendar
+               events:[self.eventsForEachDay objectForKey:date]
+           iconEvents:[self.iconEventsForEachDay objectForKey:date]];
+        
+        cell.separatorColor = self.separatorColor;
+        
+        return cell;
+    }
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.item < self.daysInWeek) {
+        return NO;
+    }
+    NSDate *date = [self dateForCollectionView:collectionView IndexPath:indexPath];
+    BOOL isCellEnabled = [self collectionView:collectionView shouldEnableItemAtIndexPath:indexPath];
+    if (!self.isNoInSameMonthCellSeletable && !isCellEnabled) {
+        return isCellEnabled;
+    }
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(shouldHighlightItemWithDate:)]) {
+        return [self.monthlyViewDelegate shouldHighlightItemWithDate:date];
+    }
+    return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.item < self.daysInWeek) {
+        return NO;
+    }
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(shouldSelectItemWithDate:)]) {
+        return [self.monthlyViewDelegate shouldSelectItemWithDate:[self dateForCollectionView:collectionView IndexPath:indexPath]];
+    }
+    return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.selectedDate = [self dateForCollectionView:collectionView IndexPath:indexPath];
+    if (self.MultipletimeReloading==FALSE) {
+        if ([self.monthlyViewDelegate respondsToSelector:@selector(didSelectItemWithDate:)]) {
+            return [self.monthlyViewDelegate didSelectItemWithDate:self.selectedDate];
+        }
+    }
+    else
+    {
+        self.MultipletimeReloading=FALSE;
+    }
+    
+}
+
+- (void) clickDate:(NSDate *)date {
+    [self scrollToMonth:date complete:^{
+        NSIndexPath *indexPath = [self indexPathForCurrentMonthWithDate:date];
+        UICollectionView *collectionView = (UICollectionView *)[self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
+        [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+        if ([self collectionView:collectionView shouldSelectItemAtIndexPath:indexPath]) {
+            [self collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+        }
+    }];
+}
+
+#pragma mark - ColletionView Utils
+
+-(NSDate *) dateForCollectionView:(UICollectionView *)collectionView IndexPath:(NSIndexPath *)indexPath {
+    NSDate *monthDate = [self dateOfCollectionView:collectionView];
+    NSDate *firstDateInMonth = [self firstVisibleDateOfMonth:monthDate];
+    
+    NSUInteger day = indexPath.item - self.daysInWeek;
+    
+    NSDateComponents *components =
+    [self.calendar components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit
+                     fromDate:firstDateInMonth];
+    components.day += day;
+    
+    NSDate *date = [self.calendar dateFromComponents:components];
+    return date;
+}
+
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldEnableItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSDate *date = [self dateForCollectionView:collectionView IndexPath:indexPath];
+    NSDate *firstDate = [[self.pagingMonths objectAtIndex:[self.pagingViews indexOfObject:collectionView]] dp_firstDateOfMonth:self.calendar];
+    NSDate *lastDate = [[self.pagingMonths objectAtIndex:[self.pagingViews indexOfObject:collectionView]] dp_lastDateOfMonth:self.calendar];
+    if (([date compare:firstDate] == NSOrderedAscending) || ([date compare:lastDate] == NSOrderedDescending)) {
+        return NO;
+    }
+    return YES;
+}
+
+
+- (CGRect) rectForDay: (NSDate*) date {
+    
+    CGRect rect = CGRectZero;
+    
+    if ([self isDateInCurrentPresentedMonth:date]) {
+        
+        NSDateComponents *components = [self.calendar components:NSDayCalendarUnit
+                                                        fromDate:[self firstVisibleDateOfMonth:date]
+                                                          toDate:date
+                                                         options:0];
+        
+        NSIndexPath* indexPath = [NSIndexPath indexPathForItem:components.day + self.daysInWeek inSection:0];
+        
+        if (indexPath) {
+            UICollectionView* currentMonnthColletionView = self.pagingViews[CURERNT_MONTH_VIEW_POSITION];
+            UICollectionViewCell* cell = [currentMonnthColletionView dequeueReusableCellWithReuseIdentifier:DPCalendarViewDayCellIdentifierDoctor forIndexPath:indexPath];
+            rect = cell.frame;
+            
+            // TODO: Can't figure out why the cell.frame is always above the selected cell. The next line should be replaced by proper code as soon as possible
+            rect.origin.y += cell.frame.size.height - 13;
+        }
+    }
+    return rect;
+}
+
+#pragma mark - Default Colors
+
+- (NSArray *)defaultEventColors {
+    return @[[UIColor colorWithRed:254/255.f green:161/255.0f blue:0/255.0f alpha:1],
+             [UIColor colorWithRed:2/255.0f green:63/255.0f blue:155/255.0f alpha:1],
+             [UIColor colorWithRed:255/255.f green:36/255.0f blue:36/255.0f alpha:1]];
+}
+
+
+- (NSArray *)defaultIconEventColors {
+    
+    return @[[UIColor clearColor], [UIColor colorWithRed:255/255.0f green:168/255.0f blue:0 alpha:1]];
+}
+
+
+- (UIColor*) defaultSeparatorColor {
+    
+    return [UIColor colorWithRed:194/255.0f green:194/255.0f blue:202/255.0f alpha:1];
+}
+
+- (UIColor*) defaultTodayBannerBkgColor {
+    
+    return  [UIColor whiteColor];
+}
+- (UIColor*) defaultTodayBannerBkgColorGreen{
+    
+    return  [UIColor colorWithRed:0/255.0 green:166/255.0 blue:108/255.0 alpha:1];
+}
+- (UIColor*) defaultTodayBannerBkgColorRed {
+    
+    return  [UIColor colorWithRed:178/255.0 green:34/255.0 blue:34/255.0 alpha:1];
+}
+- (UIColor*) defaultTodayBannerBkgColorYellow {
+    
+    return  [UIColor colorWithRed:240/255.0 green:230/255.0 blue:140/255.0 alpha:1];
+}
+- (UIColor*) defaultDayTextColor {
+    
+    return [UIColor colorWithRed:156/255.0f green:156/255.0f blue:156/255.0f alpha:1];
+}
+
+
+- (UIColor*) defaultNotInSameMonthColor {
+    
+    return [UIColor colorWithRed:239/255.f green:239/255.f blue:244/255.f alpha:1];
+}
+
+
+- (UIColor*) defaultSelectedColor {
+    
+    return [UIColor colorWithRed:231/255.f green:241/255.f blue:248/255.f alpha:1];
+}
+
+#pragma mark - Deprecated
+
+-(void)setEvents:(NSArray *)passedEvents complete:(void (^)(void))complete{
+    __weak __typeof(&*self)weakSelf = self;
+    
+    [self.processQueue addOperationWithBlock:^{
+        NSMutableDictionary *eventsByDay = [NSMutableDictionary new];
+        NSArray *events = [passedEvents sortedArrayUsingComparator:^NSComparisonResult(DPCalendarEvent *obj1, DPCalendarEvent *obj2) {
+            return [obj1.startTime compare: obj2.startTime];
+        }];
+        if (events.count) {
+            
+            /*****************************************************************
+             *
+             * Step2:
+             *      Iterate all events and add event to the dictionary, also
+             * calculate the position that we want to show the event (rowIndex).
+             * If the rowIndex value is 0, we don't show that event.
+             *
+             *****************************************************************/
+            for (DPCalendarEvent *event in events) {
+                event.rowIndex = 0;
+                NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+                NSDate *startDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:event.startTime]];
+                
+                NSDate *endDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:[event.endTime dateByAddingYears:0 months:0 days:1]]];
+                //                NSLog(@"start date in setevents %@",startDate);
+                //                NSLog(@"end date in setevents %@",endDate);
+                NSDate *date = [startDate copy];
+                
+                /*****************************************************************
+                 *
+                 * Add that event to the corresponding date
+                 *
+                 *****************************************************************/
+                while ([date compare:endDate] != NSOrderedSame) {
+                    if ([eventsByDay objectForKey:date]) {
+                        [((NSMutableArray *)[eventsByDay objectForKey:date]) addObject:event];
+                    } else {
+                        [eventsByDay setObject:@[event].mutableCopy forKey:date];
+                    }
+                    date = [date dateByAddingYears:0 months:0 days:1];
+                }
+                
+                NSMutableArray *otherEventsInTheSameDay = [eventsByDay objectForKey:startDate];
+                
+                /*****************************************************************
+                 *
+                 * We check the available max rowIndex and set it to the event.
+                 * If that is no available position, we keep it as 0.
+                 *
+                 *****************************************************************/
+                NSMutableArray *rowIndexs = @[].mutableCopy;
+                for (int i = 0; i < otherEventsInTheSameDay.count; i++) {
+                    [rowIndexs addObject:[NSNumber numberWithInt:0]];
+                }
+                for (DPCalendarEvent *event in otherEventsInTheSameDay) {
+                    if (event.rowIndex && event.rowIndex < (rowIndexs.count + 1)) {
+                        [rowIndexs setObject:[NSNumber numberWithInt:1] atIndexedSubscript:(event.rowIndex - 1)];
+                    }
+                }
+                int i = 1;
+                while ((i < rowIndexs.count + 1) && ([[rowIndexs objectAtIndex:i - 1] intValue] == 1)) {
+                    i++;
+                }
+                if (i < weakSelf.maxEventsPerDay + 1) {
+                    event.rowIndex = i;
+                }
+            }
+        }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            weakSelf.eventsForEachDay = eventsByDay.copy;
+            [weakSelf reloadCurrentView];
+            if (complete) complete();
+        }];
+    }];
+}
+
+-(void)setIconEvents:(NSArray *)passedIconEvents complete:(void (^)(void))complete{
+    __weak __typeof(&*self)weakSelf = self;
+    [self.processQueue addOperationWithBlock:^{
+        NSArray *iconEvents = [passedIconEvents sortedArrayUsingComparator:^NSComparisonResult(DPCalendarIconEvent *obj1, DPCalendarIconEvent *obj2) {
+            return [obj1.startTime compare: obj2.startTime];
+        }];
+        NSMutableDictionary *eventsByDay = [NSMutableDictionary new];
+        if (iconEvents.count) {
+            /*****************************************************************
+             *
+             * Step1:
+             *      we need to create a dictionary of @{date, array}
+             * to store the events.
+             *      ie. have a map with keys from
+             * 29/12/2013 - 1/02/2014
+             *
+             *****************************************************************/
+            NSDate *firstDay = [((DPCalendarIconEvent *)[iconEvents objectAtIndex:0]).startTime dp_dateWithoutTimeWithCalendar:weakSelf.calendar];
+            NSDate *lastDay = [((DPCalendarIconEvent *)[iconEvents objectAtIndex:iconEvents.count - 1]).endTime dp_dateWithoutTimeWithCalendar:weakSelf.calendar];
+            for (DPCalendarIconEvent *event in iconEvents) {
+                if ([lastDay compare:event.endTime] == NSOrderedAscending) {
+                    lastDay = event.endTime;
+                }
+            }
+            NSDate *iterateDay = firstDay.copy;
+            while ([iterateDay compare:lastDay] != NSOrderedDescending) {
+                [eventsByDay setObject:[NSMutableArray new] forKey:iterateDay];
+                iterateDay = [iterateDay dateByAddingYears:0 months:0 days:1];
+            }
+            
+            /*****************************************************************
+             *
+             * Step2:
+             *      Iterate all events and add event to the dictionary
+             *
+             *****************************************************************/
+            for (DPCalendarIconEvent *event in iconEvents) {
+                
+                NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+                NSDate *startDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:event.startTime]];
+                NSDate *endDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:[event.endTime dateByAddingYears:0 months:0 days:1]]];
+                
+                NSDate *date = [startDate copy];
+                
+                /*****************************************************************
+                 *
+                 * Add that event to the corresponding date
+                 *
+                 *****************************************************************/
+                while ([date compare:endDate] != NSOrderedSame) {
+                    if ([eventsByDay objectForKey:date]) {
+                        [((NSMutableArray *)[eventsByDay objectForKey:date]) addObject:event];
+                    }
+                    date = [date dateByAddingYears:0 months:0 days:1];
+                }
+                
+            }
+        }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            weakSelf.iconEventsForEachDay = eventsByDay.copy;
+            [weakSelf reloadCurrentView];
+            if (complete) complete();
+        }];
+    }];
+}
+
+
+#pragma mark - DPCalendarMonthlySingleMonthCellDoctorDelegate
+-(void)didTapEvent:(DPCalendarEvent *)event onDate:(NSDate *)date {
+    if ([self.monthlyViewDelegate respondsToSelector:@selector(didTapEvent:onDate:)]) {
+        [self.monthlyViewDelegate didTapEvent:event onDate:date];
+    }
+}
+
+//TODO: Fix NSCalendar thread issue
+-(NSCalendar *)calendar {
+    if (IS_OS_7_OR_LATER) {
+        return _calendar;
+    } else {
+        return [NSCalendar currentCalendar];
+    }
+}
+
+
+@end

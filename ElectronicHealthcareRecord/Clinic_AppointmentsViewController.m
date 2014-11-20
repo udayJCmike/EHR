@@ -9,7 +9,7 @@
 #import "Clinic_AppointmentsViewController.h"
 #import "Clinic_Detail_AppointmentsViewController.h"
 #import "Clinic_View_Appointments_Table_CellViewController.h"
-#import "DPCalendarTestViewController.h"
+#import "DPCalendarTestDoctorViewController.h"
 @interface Clinic_AppointmentsViewController ()
 
 @end
@@ -124,13 +124,11 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)myButtonClicked:(id)sender{
-    DPCalendarTestViewController *testViewController = [DPCalendarTestViewController new];
+    DPCalendarTestDoctorViewController *testViewController = [DPCalendarTestDoctorViewController new];
     
-    [self presentViewController:testViewController animated:YES completion:nil];}
+    [self presentViewController:testViewController animated:YES completion:nil];
 
-
-
-
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
