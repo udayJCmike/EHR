@@ -19,7 +19,7 @@
 
 @end
 
-@interface DPCalendarTestOptionsCell : UITableViewCell<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface DPCalendarTestOptionsCell : UITableViewCell<UIPickerViewDataSource,UIPickerViewDelegate,UITextViewDelegate>
 {
     
 }

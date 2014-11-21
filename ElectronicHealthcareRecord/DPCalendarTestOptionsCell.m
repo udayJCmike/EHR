@@ -23,7 +23,7 @@ enum CellType{
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) UIPickerView *timePicker;
-@property (nonatomic, strong) UITextField *valueTextField;
+@property (nonatomic, strong) UITextView *valueTextField;
 @property (nonatomic, strong) UISwitch *valueSwitch;
 @property (nonatomic, strong) UISlider *valueSlider;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -45,7 +45,8 @@ enum CellType{
         
         //  isReschedule=FALSE;
         self.nameLabel = [UILabel new];
-        self.valueTextField = [UITextField new];
+        self.valueTextField = [UITextView new];
+        self.valueTextField.delegate=self;
         self.dateLabel = [UILabel new];
         self.datePicker=[UIDatePicker new];
         tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dateLabelTapped:)];
@@ -53,13 +54,19 @@ enum CellType{
         self.dateLabel.userInteractionEnabled = YES;
         [self.dateLabel addGestureRecognizer:tap];
         self.timePicker=[UIPickerView new];
+        [self.valueTextField.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+        [self.valueTextField.layer setBorderWidth:1.0];
         
+        //The rounded corner part, where you specify your view's corner radius:
+        self.valueTextField.layer.cornerRadius = 5;
+        self.valueTextField.clipsToBounds = YES;
+        [self.valueTextField setFont:[UIFont fontWithName:@"Helvetica Neue" size:15]];
         self.timeArray=[NSMutableArray new];
         self.timeArray=[[NSMutableArray alloc]initWithObjects:@"00:00",@"00:15",@"00:30",@"00:45",@"01:00",@"01:15",@"01:30",@"01:45",@"02:00",@"02:15",@"02:30",@"02:45",@"03:00",@"03:15",@"03:30",@"03:45",@"04:00",@"04:15",@"04:30",@"04:45",@"05:00",@"05:15",@"05:30",@"05:45",@"06:00",@"06:15",@"06:30",@"06:45",@"07:00",@"07:15",@"07:30",@"07:45",@"08:00",@"08:15",@"08:30",@"08:45",@"09:00",@"09:15",@"09:30",@"09:45",@"10:00",@"10:15",@"10:30",@"10:45",@"11:00",@"11:15",@"11:30",@"11:45",@"12:00",@"12:15",@"12:30",@"12:45",@"13:00",@"13:15",@"13:30",@"13:45",@"14:00",@"14:15",@"14:30",@"14:45",@"15:00",@"15:15",@"15:30",@"15:45",@"16:00",@"16:15",@"16:30",@"16:45",@"17:00",@"17:15",@"17:30",@"17:45",@"18:00",nil];
         [self.timePicker setDataSource:self];
         [self.timePicker setDelegate:self];
         self.timePicker.showsSelectionIndicator = YES;
-        [self.valueTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        
         
         [self addSubview:self.nameLabel];
         [self addSubview:self.valueTextField];
@@ -140,7 +147,8 @@ enum CellType{
         
         //Date picker
         
-        datePicker.frame=CGRectMake(0,44,290, 216);
+        datePicker.frame=CGRectMake(0,44,280, 216);
+        self.timePicker.frame=CGRectMake(0,44,280, 216);
         datePicker.datePickerMode = UIDatePickerModeTime;
         if([self.identifier isEqualToString:@"CELL_START_TIME"])
         {
@@ -166,7 +174,8 @@ enum CellType{
         
         
         _datePopover = [[UIPopoverController alloc] initWithContentViewController:popoverContent];
-        _datePopover.popoverContentSize = CGSizeMake(290.f, 250.f);
+        
+        _datePopover.popoverContentSize = CGSizeMake(280.f, 250.f);
     }
     
     return _datePopover;
@@ -178,8 +187,11 @@ enum CellType{
     [self.delegate cell:self valueChanged:[picker.date dateByAddingYears:0 months:0 days:0]];
 }
 
--(void) textFieldDidChange:(UITextField *)textField {
-    [self.delegate cell:self valueChanged:textField.text];
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+     [self.delegate cell:self valueChanged:textView.text];
+    return YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -273,6 +285,21 @@ enum CellType{
     self.valueTextField.frame = valueFrame;
     
     self.dateLabel.frame = valueFrame;
+    if([self.identifier isEqualToString:@"CELL_TITLE"])
+    {
+        CGRect val=valueFrame;
+        val.size.width-=10;
+        val.size.height-=10;
+        val.origin.y+=5;
+        self.valueTextField.frame=val;
+    }
+    
+//    NSLog(@"name Label %@",NSStringFromCGRect(self.nameLabel.frame));
+//     NSLog(@"text Label %@",NSStringFromCGRect(self.valueTextField.frame));
+//     NSLog(@"date Label %@",NSStringFromCGRect(self.dateLabel.frame));
+
+//    name Label {{10, 0}, {255, 150}}
+//    text Label {{275, 0}, {255, 150}}
 }
 
 

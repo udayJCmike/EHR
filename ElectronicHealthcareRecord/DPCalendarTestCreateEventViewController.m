@@ -205,6 +205,16 @@
 #pragma mark - UITableViewDataSource
 
 #define NEW_EVENT_CELL_IDENTIFIER @"NEW_EVENT_CELL_IDENTIFIER"
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==2) {
+        return 150;
+    }
+    else
+    {
+        return 50;
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DPCalendarTestOptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:NEW_EVENT_CELL_IDENTIFIER];
     if (!cell) {
@@ -214,7 +224,7 @@
     
     cell.delegate = self;
     switch (indexPath.row) {
-        case 0:
+        case 2:
         {
             cell.identifier = CELL_TITLE;
             NSString *title_name= self.navigationController.title;
@@ -226,10 +236,10 @@
             }
             [cell setTitle:@"Notes"];
             
-            [cell setTextValue:self.event.title];
+            [cell setTextValue:self.event.des];
         }
             break;
-        case 1:
+        case 0:
         {
             cell.identifier = CELL_START_TIME;
             NSString *title_name= self.navigationController.title;
@@ -244,7 +254,7 @@
             
         }
             break;
-        case 2:
+        case 1:
         {
             cell.identifier = CELL_END_TIME;
             NSString *title_name= self.navigationController.title;
@@ -279,7 +289,7 @@
 -(void)cell:(DPCalendarTestOptionsCell *)cell valueChanged:(id)value {
     NSString *identifier = cell.identifier;
     if ([identifier isEqualToString:CELL_TITLE]) {
-        self.event.title = value;
+        self.event.des = value;
     } else if ([identifier isEqualToString:CELL_START_TIME]) {
         //    NSLog(@"start time changed %@",value);
         self.event.startTime = value;

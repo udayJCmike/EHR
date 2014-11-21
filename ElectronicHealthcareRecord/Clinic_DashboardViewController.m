@@ -20,6 +20,7 @@
 @synthesize scrollView;
 @synthesize previousmonth;
 @synthesize thismonth;
+@synthesize help_view;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -66,10 +67,59 @@
     [self.p2v3 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
     [self.p2v4 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
 
+    UIButton *helpButton = [[UIButton alloc] initWithFrame:CGRectMake(15,5, 85,43)];
+    [helpButton setBackgroundImage:[UIImage imageNamed:@"help.png"] forState:UIControlStateNormal];
+    [helpButton addTarget:self action:@selector(HelpViewShow)
+         forControlEvents:UIControlEventTouchUpInside];
+    [helpButton setShowsTouchWhenHighlighted:YES];
     
+    UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:helpButton];
+    self.navigationItem.leftBarButtonItem =mailbutton;
+    self.help_view.clipsToBounds=YES;
+    self.help_view.layer.cornerRadius=10;
+    self.help_scrollview.contentSize = CGSizeMake(self.help_scrollview.frame.size.width, 800);
     
 }
 
+
+-(void)HelpViewShow
+{
+    CGRect f=help_view.frame;
+    f.origin.x=1000;
+    f.origin.y=284;
+    help_view.frame=f;
+    CGRect frame = help_view.frame;
+    
+    frame.origin.x=154;
+    frame.origin.y=281;
+    
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationDuration:0.7];
+    
+    help_view.frame=frame;
+    
+    [UIView commitAnimations];
+}
+- (IBAction)closebtn:(id)sender {
+    
+    
+    CGRect frame = help_view.frame;
+    
+    frame.origin.x=154;
+    frame.origin.y=1050;
+    
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationDuration:0.5];
+    
+    help_view.frame=frame;
+    
+    [UIView commitAnimations];
+    
+    
+    
+}
 
 
 
@@ -98,7 +148,10 @@
 }
 -(IBAction)messages:(id)sender
 {
-    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Clinic_Ask_Us_Storyboard" bundle:nil];
+//    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Clinic_Ask_Us_Storyboard" bundle:nil];
+//    UIViewController *initialvc=[welcome instantiateInitialViewController];
+//    [self.navigationController pushViewController:initialvc animated:YES];
+    UIStoryboard *welcome=[UIStoryboard storyboardWithName:@"Messages" bundle:nil];
     UIViewController *initialvc=[welcome instantiateInitialViewController];
     [self.navigationController pushViewController:initialvc animated:YES];
 }

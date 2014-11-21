@@ -33,7 +33,7 @@
         if (arc4random() % 2 > 0)
         {
             
-            event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:date endTime:[date dateByAddingYears:0 months:0 days:0] colorIndex:2];
+            event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:date endTime:[date dateByAddingYears:0 months:0 days:0] description:@"" colorIndex:2];
             [ListOfAppointments addObject:event];
         }
         

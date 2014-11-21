@@ -44,7 +44,7 @@
             [self.status warningStyle];
     }
     else if ([[detailData valueForKey:@"status"]isEqualToString:@"1"]) {
-         [self.status setTitle:@"Download Report" forState:UIControlStateNormal];
+         [self.status setTitle:@"View Report" forState:UIControlStateNormal];
            [self.status primaryStyle];
     }
     self.grey_view.layer.cornerRadius=10;

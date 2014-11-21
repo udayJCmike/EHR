@@ -62,15 +62,14 @@ NSString *title;;
     arr = [NSArray arrayWithObjects:@"Clinic Admin",@"Doctor", @"Patient",nil];
     NSArray * arrImage = [[NSArray alloc] init];
   //  arrImage = [NSArray arrayWithObjects:[UIImage imageNamed:@"super_admin.png"], [UIImage imageNamed:@"clinic_admin.jpeg"], [UIImage imageNamed:@"patient.png"], nil];
-    if(dropDown == nil) {
-        NSLog(@"in nil");
-        title= [(UIButton *)sender currentTitle];
+    if(dropDown == nil) {        
+        
         CGFloat f = 200;
         dropDown = [[NIDropDown alloc]showDropDown:sender :&f :arr :arrImage :@"down"];
         dropDown.delegate = self;
     }
     else {
-        NSLog(@"values");
+        
         [dropDown hideDropDown:sender];
         [self rel];
     }

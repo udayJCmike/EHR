@@ -16,4 +16,5 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *bgview;
 @property (strong, nonatomic) UINavigationController *navController;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *make_appointment;
 @end

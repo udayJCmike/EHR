@@ -50,6 +50,13 @@
     
     
      [self addNavigationBarButton];
+    
+    
+}
+- (IBAction)Make_appointment:(id)sender {
+    DPCalendarTestDoctorViewController *testViewController = [DPCalendarTestDoctorViewController new];
+    
+    [self presentViewController:testViewController animated:YES completion:nil];
 }
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedSegmentIndex);
@@ -69,14 +76,10 @@
     //  [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     [self.navigationItem setRightBarButtonItem:myNavBtn];
     
-    // create a navigation push button that is initially hidden
-    navButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [navButton setFrame:CGRectMake(60, 50, 200, 40)];
-    [navButton setTitle:@"Push Navigation" forState:UIControlStateNormal];
-    [navButton addTarget:self action:@selector(pushNewView:)
-        forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:navButton];
-    [navButton setHidden:YES];
+   
+    UIBarButtonItem *fixedItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedItem.width = 30.;
+    [self.navigationItem setRightBarButtonItems:@[self.make_appointment, fixedItem, myNavBtn]];
 }
 
 -(IBAction)myButtonClicked:(id)sender{

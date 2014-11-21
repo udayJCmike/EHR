@@ -51,6 +51,11 @@
     [self.update primaryStyle];
    
     [self.cancel defaultStyle];
+    self.view2.layer.cornerRadius=10;
+    self.view2.layer.masksToBounds=YES;
+    [self.update1 primaryStyle];
+    
+    [self.cancel1 defaultStyle];
 }
 
 
@@ -58,6 +63,15 @@
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedSegmentIndex);
+    if (segmentedControl.selectedSegmentIndex==0) {
+        self.personalinfo.hidden=NO;
+        self.insuranceDetails.hidden=YES;
+    }
+    else
+    {
+        self.personalinfo.hidden=YES;
+        self.insuranceDetails.hidden=NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning

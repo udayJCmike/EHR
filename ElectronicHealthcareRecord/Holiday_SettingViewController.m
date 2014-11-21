@@ -17,6 +17,7 @@
 @synthesize workinghours2;
 @synthesize holiday1;
 @synthesize holiday2;
+@synthesize timePicker;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,8 +60,62 @@
     [self.update primaryStyle];
     [self.reset resetStyle];
     [self.cancel defaultStyle];
+    entries = [[NSArray alloc] initWithObjects:@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday",@"Friday",@"Saturday", nil];
+    selectionDays = [[NSMutableDictionary alloc] init];
+    for (NSString *key in entries)
+        [selectionDays setObject:[NSNumber numberWithBool:NO] forKey:key];
     // Do any additional setup after loading the view.
+    [self.but1 setTitleColor:[UIColor redColor] forState:(UIControlStateHighlighted | UIControlStateSelected)];
+    [self.but1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.but2 setTitleColor:[UIColor redColor] forState:(UIControlStateHighlighted | UIControlStateSelected)];
+    [self.but2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.but3 setTitleColor:[UIColor redColor] forState:(UIControlStateHighlighted | UIControlStateSelected)];
+    [self.but3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.but4 setTitleColor:[UIColor redColor] forState:(UIControlStateHighlighted | UIControlStateSelected)];
+    [self.but4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    
 }
+
+- (IBAction)date_changed:(id)sender {
+    NSDateFormatter *form=[[NSDateFormatter alloc]init];
+    [form setDateFormat:@"HH:mm"];
+    UIButton *button = (UIButton *)[self.view viewWithTag:buttontag];
+   
+    [button setTitle:[form stringFromDate:timePicker.date] forState:UIControlStateNormal];
+    button.backgroundColor=[UIColor clearColor];
+    [timePicker setHidden:YES];
+}
+- (IBAction)showTime:(id)sender {
+   UIButton *b= (UIButton*)sender ;
+    b.backgroundColor=[UIColor grayColor];
+    [timePicker setHidden:NO];
+    buttontag=[(UIButton*)sender tag];
+    
+}
+
+
+
+-(IBAction)HolidayList:(id)sender
+{
+    multiPickerView = [[CYCustomMultiSelectPickerView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height - 280, 755, 304)];
+    multiPickerView.entriesArray = entries;
+    multiPickerView.multiPickerDelegate = self;
+    [self.view addSubview:multiPickerView];
+    [multiPickerView pickerShow];
+}
+#pragma mark - Delegate
+//获取到选中的数据
+-(void)returnChoosedPickerString:(NSMutableArray *)selectedEntriesArr
+{
+    NSLog(@"selectedArray=%@",selectedEntriesArr);
+    
+    //   NSString *dataStr = [selectedEntriesArr componentsJoinedByString:@"\n"];
+    
+    
+}
+
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedSegmentIndex);
     

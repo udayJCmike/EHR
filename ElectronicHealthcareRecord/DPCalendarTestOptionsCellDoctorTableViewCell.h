@@ -18,7 +18,7 @@
 
 @end
 
-@interface DPCalendarTestOptionsCellDoctorTableViewCell : UITableViewCell<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface DPCalendarTestOptionsCellDoctorTableViewCell : UITableViewCell<UIPickerViewDataSource,UIPickerViewDelegate,UITextViewDelegate,UITextFieldDelegate>
 {
      UITapGestureRecognizer *tap ;
 }
@@ -32,14 +32,14 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) UIPickerView *timePicker;
-@property (nonatomic, strong) UITextField *valueTextField;
+@property (nonatomic, strong) UITextView *valueTextField;
 @property (nonatomic, strong) UISwitch *valueSwitch;
 @property (nonatomic, strong) UISlider *valueSlider;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property(nonatomic,retain)NSMutableArray *timeArray;
 @property (nonatomic) enum CellType cellType;
 @property (nonatomic, strong) UIPopoverController *datePopover;
-
+@property (nonatomic, strong) UITextField *nameTextField;
 @end
 
 

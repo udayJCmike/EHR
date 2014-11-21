@@ -30,4 +30,8 @@
 @property(nonatomic,retain)IBOutlet UIProgressView *p2v2;
 @property(nonatomic,retain)IBOutlet UIProgressView *p2v3;
 @property(nonatomic,retain)IBOutlet UIProgressView *p2v4;
+@property (strong, nonatomic) IBOutlet UIView *help_view;
+
+@property (strong, nonatomic) IBOutlet UIButton *close_button;
+@property(nonatomic,retain)IBOutlet UIScrollView*help_scrollview;
 @end

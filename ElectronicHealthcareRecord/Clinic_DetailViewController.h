@@ -10,11 +10,13 @@
 #import "SVSegmentedControl.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+Bootstrap.h"
+#import "DPCalendarTestDoctorViewController.h"
 @interface Clinic_DetailViewController : UIViewController
 {
-    UIButton *navButton;
+    
 
 
 }
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *make_appointment;
 @property (weak, nonatomic) IBOutlet UIView *bgview;
 @end

@@ -17,4 +17,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *update;
 @property (strong, nonatomic) IBOutlet UIButton *cancel;
 @property (strong, nonatomic) IBOutlet UIView *personalinfo;
+@property (strong, nonatomic) IBOutlet UIView *view2;
+@property (strong, nonatomic) IBOutlet UIView *insuranceDetails;
+@property (strong, nonatomic) IBOutlet UIButton *update1;
+@property (strong, nonatomic) IBOutlet UIButton *cancel1;
 @end

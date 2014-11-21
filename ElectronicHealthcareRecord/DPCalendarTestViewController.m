@@ -312,7 +312,7 @@
             if (![self.monthlyView eventsForDay:date]) {
                 isUpdating=FALSE;
                 selected_date=[date dateByAddingYears:0 months:0 days:0];
-                DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+                DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
                 [self createEventButtonSelected:event1];
                 
             }
@@ -343,7 +343,7 @@
     else if (![self.monthlyView eventsForDay:date]) {
         isUpdating=FALSE;
         selected_date=[date dateByAddingYears:0 months:0 days:0];
-        DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+        DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
         [self createEventButtonSelected:event1];
         
     }
@@ -370,7 +370,7 @@
         if (![self.monthlyView eventsForDay:response_date]) {
             isUpdating=FALSE;
             selected_date=[response_date dateByAddingYears:0 months:0 days:0];
-            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Waiting for app" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Waiting for app" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
             [self createEventButtonSelected:event1];
             
         }

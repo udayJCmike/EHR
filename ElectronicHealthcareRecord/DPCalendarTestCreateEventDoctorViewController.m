@@ -194,7 +194,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#define CELL_Name @"CELL_NAME"
 #define CELL_TITLE @"CELL_TITLE"
 #define CELL_START_TIME @"CELL_START_TIME"
 #define CELL_END_TIME @"CELL_END_TIME"
@@ -204,6 +204,16 @@
 #pragma mark - UITableViewDataSource
 
 #define NEW_EVENT_CELL_IDENTIFIER @"NEW_EVENT_CELL_IDENTIFIER"
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==3) {
+        return 150;
+    }
+    else
+    {
+        return 50;
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DPCalendarTestOptionsCellDoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NEW_EVENT_CELL_IDENTIFIER];
     if (!cell) {
@@ -215,7 +225,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            cell.identifier = CELL_TITLE;
+            cell.identifier = CELL_Name;
             NSString *title_name= self.navigationController.title;
             if ([title_name isEqualToString:@"Create Appointment"]) {
                 cell.isReschedule=FALSE;
@@ -223,11 +233,12 @@
             else if ([title_name isEqualToString:@"Reschedule Appointment"]) {
                 cell.isReschedule=TRUE;
             }
-            [cell setTitle:@"Appointment Name"];
+            [cell setTitle:@"Patient Name"];
             
             [cell setTextValue:self.event.title];
         }
             break;
+        
         case 1:
         {
             cell.identifier = CELL_START_TIME;
@@ -257,6 +268,21 @@
             [cell setDate:self.event.endTime];
         }
             break;
+        case 3:
+        {
+            cell.identifier = CELL_TITLE;
+            NSString *title_name= self.navigationController.title;
+            if ([title_name isEqualToString:@"Create Appointment"]) {
+                cell.isReschedule=FALSE;
+            }
+            else if ([title_name isEqualToString:@"Reschedule Appointment"]) {
+                cell.isReschedule=TRUE;
+            }
+            [cell setTitle:@"Notes"];
+            
+            [cell setTextValue:self.event.des];
+        }
+            break;
         default:
             break;
     }
@@ -272,18 +298,25 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
 }
 #pragma mark -DPCalendarTestOptionsCellDoctorDelegate
 -(void)cell:(DPCalendarTestOptionsCellDoctorTableViewCell *)cell valueChanged:(id)value {
     NSString *identifier = cell.identifier;
     if ([identifier isEqualToString:CELL_TITLE]) {
-        self.event.title = value;
-    } else if ([identifier isEqualToString:CELL_START_TIME]) {
+        self.event.des = value;
+    }
+    else if ([identifier isEqualToString:CELL_START_TIME]) {
         //    NSLog(@"start time changed %@",value);
         self.event.startTime = value;
         
     }
+    else if ([identifier isEqualToString:CELL_Name]) {
+        //    NSLog(@"start time changed %@",value);
+        self.event.title = value;
+        
+    }
+    
     else
     {
         //        NSLog(@"End time changed %@",value);

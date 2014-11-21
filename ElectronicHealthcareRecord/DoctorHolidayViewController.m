@@ -17,6 +17,7 @@
 @synthesize workinghours2;
 @synthesize holiday1;
 @synthesize holiday2;
+@synthesize timePicker;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,6 +44,15 @@
 	yellowRC.thumb.textShadowOffset = CGSizeMake(0, 1);
 	
 	[self.view addSubview:yellowRC];
+    entries = [[NSArray alloc] initWithObjects:@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday",@"Friday",@"Saturday", nil];
+    selectionDays = [[NSMutableDictionary alloc] init];
+    for (NSString *key in entries)
+        [selectionDays setObject:[NSNumber numberWithBool:NO] forKey:key];
+    
+    // Init picker and add it to view
+    
+    
+    
     workinghours2.hidden=NO;
     workinghours1.hidden=NO;
     holiday2.hidden=YES;
@@ -61,6 +71,49 @@
     [self.cancel defaultStyle];
        // Do any additional setup after loading the view.
 }
+
+
+- (IBAction)date_changed:(id)sender {
+    NSDateFormatter *form=[[NSDateFormatter alloc]init];
+   [form setDateFormat:@"HH:mm"];
+    UIButton *button = (UIButton *)[self.view viewWithTag:buttontag];
+      button.backgroundColor=[UIColor clearColor];
+    [button setTitle:[form stringFromDate:timePicker.date] forState:UIControlStateNormal];
+    [timePicker setHidden:YES];
+}
+- (IBAction)showTime:(id)sender {
+  
+    UIButton *b= (UIButton*)sender ;
+    b.backgroundColor=[UIColor grayColor];
+    [timePicker setHidden:NO];
+    buttontag=[(UIButton*)sender tag];
+}
+
+
+
+-(IBAction)HolidayList:(id)sender
+{
+    multiPickerView = [[CYCustomMultiSelectPickerView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height - 280, 755, 304)];
+    multiPickerView.entriesArray = entries;
+    multiPickerView.multiPickerDelegate = self;
+    [self.view addSubview:multiPickerView];
+     [multiPickerView pickerShow];
+}
+#pragma mark - Delegate
+//获取到选中的数据
+-(void)returnChoosedPickerString:(NSMutableArray *)selectedEntriesArr
+{
+    NSLog(@"selectedArray=%@",selectedEntriesArr);
+    
+ //   NSString *dataStr = [selectedEntriesArr componentsJoinedByString:@"\n"];
+    
+    
+}
+
+
+
+
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedSegmentIndex);
     

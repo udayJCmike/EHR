@@ -10,9 +10,14 @@
 #import "SVSegmentedControl.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+Bootstrap.h"
-@interface DoctorHolidayViewController : UIViewController
+#import "CYCustomMultiSelectPickerView.h"
+@interface DoctorHolidayViewController : UIViewController<CYCustomMultiSelectPickerViewDelegate>
 {
     UIButton *navButton;
+    NSArray *entries;
+    NSMutableDictionary *selectionDays;
+    int buttontag;
+   CYCustomMultiSelectPickerView *multiPickerView;
 }
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;
 
@@ -25,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIView *holiday1;
 @property (strong, nonatomic) IBOutlet UIView *holiday2;
 @property (strong, nonatomic) IBOutlet UIView *bgview;
+@property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
 
 
 @end

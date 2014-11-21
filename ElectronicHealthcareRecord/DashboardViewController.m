@@ -21,6 +21,8 @@
 @synthesize scrollView;
 @synthesize doctor_details;
 @synthesize clinic_details;
+@synthesize help_view;
+@synthesize close_button;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +31,45 @@
     }
     return self;
 }
+-(void)HelpViewShow
+{
+    CGRect f=help_view.frame;
+    f.origin.x=1000;
+    f.origin.y=284;
+    help_view.frame=f;
+    CGRect frame = help_view.frame;
+    
+    frame.origin.x=154;
+    frame.origin.y=281;
+    
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationDuration:0.7];
+    
+    help_view.frame=frame;
+  
+    [UIView commitAnimations];
+}
+- (IBAction)closebtn:(id)sender {
+    
+    
+    CGRect frame = help_view.frame;
+    
+    frame.origin.x=154;
+    frame.origin.y=1050;
+    
+    [UIView beginAnimations:nil context:nil];
+    
+    [UIView setAnimationDuration:0.5];
+    
+    help_view.frame=frame;
+    
+    [UIView commitAnimations];
+   
+    
+    
+}
+
 
 - (void)viewDidLoad
 {
@@ -45,21 +86,32 @@
     bg_view.layer.masksToBounds=YES;
 //    bg_view.layer.borderWidth=3;
 //    bg_view.layer.borderColor=[[UIColor blackColor]CGColor];
+    UIButton *helpButton = [[UIButton alloc] initWithFrame:CGRectMake(15,5, 85,43)];
+    [helpButton setBackgroundImage:[UIImage imageNamed:@"help.png"] forState:UIControlStateNormal];
+    [helpButton addTarget:self action:@selector(HelpViewShow)
+         forControlEvents:UIControlEventTouchUpInside];
+    [helpButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *mailbutton =[[UIBarButtonItem alloc] initWithCustomView:helpButton];
+    self.navigationItem.leftBarButtonItem =mailbutton;
+    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0/255.0 green:166/255.0 blue:108/255.0 alpha:1] ;
     pageControl.backgroundColor=[UIColor clearColor];
-
+    self.help_view.clipsToBounds=YES;
+    self.help_view.layer.cornerRadius=10;
    
     [scrollView addSubview:clinic_details];
     [scrollView addSubview:doctor_details];
    
-   
+   self.help_scrollview.contentSize = CGSizeMake(self.help_scrollview.frame.size.width, 800);
 scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [_pageImages count], 220);
     [self.pv1 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
      [self.pv2 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
      [self.pv3 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
      [self.pv4 setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
+    
     
 
 }

@@ -204,6 +204,8 @@
     
     [self performSegueWithIdentifier:@"details" sender:self];
     
+  
+    
 }
 -(void)addNavigationBarButton{
     UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
@@ -228,8 +230,9 @@
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)myButtonClicked:(id)sender{
-    [self performSegueWithIdentifier:@"addnavigation" sender:self];
-    
+//    [self performSegueWithIdentifier:@"addnavigation" sender:self];
+    UIViewController *vc= [self.storyboard instantiateViewControllerWithIdentifier:@"AddPatient"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedSegmentIndex);

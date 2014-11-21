@@ -249,7 +249,7 @@
 {
     response_date=date;
     DidTapWithReschedule=FALSE;
-    NSLog(@"Touched event %@, date %@", event.title, date);
+//    NSLog(@"Touched event %@, date %@", event.title, date);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSDate  *today=[[NSDate date]dateByAddingYears:0 months:0 days:0];
@@ -322,7 +322,7 @@
     [weekFormatter setDateFormat:@"EEEE"];
     NSString *weekday= [weekFormatter stringFromDate:s_date1];
     // NSLog(@"Select date %@ and status %hhd",selected_string,[delegate.ListOfHolidays containsObject:selected_string]);
-    NSLog(@"Select date %@ with  today date %@", [formatter stringFromDate:s_date1], today);
+//    NSLog(@"Select date %@ with  today date %@", [formatter stringFromDate:s_date1], today);
     if (([s_date compare:today]==NSOrderedAscending)||([weekday isEqualToString:@"Sunday"])||([weekday isEqualToString:@"Saturday"]))
     {
         UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"The day you have clicked is Unavailable! Please try to get an Appointment on some other days! Thank You!!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -340,7 +340,7 @@
         {
             isUpdating=FALSE;
             selected_date=[date dateByAddingYears:0 months:0 days:0];
-            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
             [self createEventButtonSelected:event1];
         }
         else if ([status_for_date isEqualToString:@"Waiting"])
@@ -358,7 +358,7 @@
     else if (![self.monthlyView eventsForDay:date]) {
         isUpdating=FALSE;
         selected_date=[date dateByAddingYears:0 months:0 days:0];
-        DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Appointment" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+        DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
         [self createEventButtonSelected:event1];
         
     }
@@ -378,7 +378,7 @@
         {
             isUpdating=FALSE;
             selected_date=[response_date dateByAddingYears:0 months:0 days:0];
-            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"Waiting for app" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] colorIndex:1];
+            DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"" startTime:selected_date endTime:[self Get_EndDate:[response_date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
             [self createEventButtonSelected:event1];
         }
     }
