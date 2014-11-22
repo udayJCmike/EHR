@@ -35,5 +35,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *but2;
 @property (strong, nonatomic) IBOutlet UIButton *but3;
 @property (strong, nonatomic) IBOutlet UIButton *but4;
-
+@property (strong, nonatomic) IBOutlet UIButton *chooseHolidays;
 @end

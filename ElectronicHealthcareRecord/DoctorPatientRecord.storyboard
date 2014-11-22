@@ -167,13 +167,13 @@
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.83921568629999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uiu-B1-GNf">
-                                        <rect key="frame" x="8" y="462" width="728" height="112"/>
+                                        <rect key="frame" x="8" y="495" width="728" height="85"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUS-7F-0Cl">
-                                                <rect key="frame" x="20" y="0.0" width="605" height="127"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llu-8S-ZjH">
+                                                <rect key="frame" x="0.0" y="0.0" width="723" height="85"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">Some text comes here! Some text comes here!Some text comes here!Some text comes here!Some text comes here!Some text comes here!Some text comes here!Some text comes here!Some text comes here!Some text comes here!</string>
-                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="18"/>
+                                                <string key="text">Physio therapy in spinal joints and neck areas. Prescribed to take some medicine name comes here twice a day for 3 months , after the first 3 months the medicine has to be taken only once a day for one month then have to come for therapy every 30 days once.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
@@ -217,28 +217,12 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grg-35-w4P">
-                                        <rect key="frame" x="8" y="275" width="728" height="312"/>
-                                        <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-vE-y3i">
-                                                <rect key="frame" x="47" y="7" width="634" height="182"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="LX8-0q-rky" id="6Zi-ma-m65"/>
-                                                </connections>
-                                            </scrollView>
-                                            <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-jT-Mss">
-                                                <rect key="frame" x="259" y="180" width="141" height="37"/>
-                                            </pageControl>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llu-8S-ZjH">
-                                                <rect key="frame" x="20" y="197" width="723" height="150"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">Physio therapy in spinal joints and neck areas. Prescribed to take some medicine name comes here twice a day for 3 months , after the first 3 months the medicine has to be taken only once a day for one month then have to come for therapy every 30 days once.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-vE-y3i">
+                                        <rect key="frame" x="54" y="290" width="634" height="193"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="LX8-0q-rky" id="6Zi-ma-m65"/>
+                                        </connections>
+                                    </scrollView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDn-sH-5HU">
                                         <rect key="frame" x="8" y="102" width="728" height="123"/>
                                         <subviews>
@@ -275,7 +259,6 @@
                     <connections>
                         <outlet property="DownloadStatus" destination="ibR-00-Aa7" id="A19-5Z-awf"/>
                         <outlet property="grey_view" destination="xJe-Mb-flx" id="OJk-KM-2yY"/>
-                        <outlet property="pagecontrol" destination="xdK-jT-Mss" id="TtF-Eo-eoL"/>
                         <outlet property="patname" destination="iry-Hx-O30" id="LIu-NS-gfm"/>
                         <outlet property="problem" destination="u42-Us-vmd" id="9aW-j9-zPD"/>
                         <outlet property="scrollView" destination="Xes-vE-y3i" id="iT5-jb-EKD"/>

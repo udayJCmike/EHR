@@ -216,6 +216,7 @@
                     <connections>
                         <outlet property="bgview" destination="Utz-cT-Dpc" id="inl-Zo-zKX"/>
                         <outlet property="cancel" destination="UqJ-Bh-6hL" id="rnO-PP-Ig3"/>
+                        <outlet property="chooseHolidays" destination="BSY-mN-dvL" id="pul-Vd-sRP"/>
                         <outlet property="holiday1" destination="udw-To-xPX" id="Pb9-13-ZiH"/>
                         <outlet property="holiday2" destination="9uX-eU-W5I" id="YGT-Nz-1nZ"/>
                         <outlet property="personalinfo" destination="zMz-Io-OsN" id="FyY-DE-Ifs"/>

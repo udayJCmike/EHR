@@ -31,6 +31,6 @@
 @property (strong, nonatomic) IBOutlet UIView *holiday2;
 @property (strong, nonatomic) IBOutlet UIView *bgview;
 @property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
-
+@property (strong, nonatomic) IBOutlet UIButton *chooseHolidays;
 
 @end

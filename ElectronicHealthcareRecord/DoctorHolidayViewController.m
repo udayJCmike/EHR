@@ -86,13 +86,15 @@
     UIButton *b= (UIButton*)sender ;
     b.backgroundColor=[UIColor grayColor];
     [timePicker setHidden:NO];
-    buttontag=[(UIButton*)sender tag];
+    buttontag=(int)[(UIButton*)sender tag];
 }
 
 
 
 -(IBAction)HolidayList:(id)sender
 {
+    UIButton *b= (UIButton*)sender ;
+     b.backgroundColor=[UIColor grayColor];
     multiPickerView = [[CYCustomMultiSelectPickerView alloc] initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height - 280, 755, 304)];
     multiPickerView.entriesArray = entries;
     multiPickerView.multiPickerDelegate = self;
@@ -103,6 +105,7 @@
 //获取到选中的数据
 -(void)returnChoosedPickerString:(NSMutableArray *)selectedEntriesArr
 {
+     self.chooseHolidays.backgroundColor=[UIColor clearColor];
     NSLog(@"selectedArray=%@",selectedEntriesArr);
     
  //   NSString *dataStr = [selectedEntriesArr componentsJoinedByString:@"\n"];
@@ -123,6 +126,7 @@
         workinghours1.hidden=YES;
         holiday2.hidden=NO;
         holiday1.hidden=NO;
+         timePicker.hidden=YES;
     }
     else if(segmentedControl.selectedSegmentIndex==0)
     {
@@ -130,6 +134,7 @@
         workinghours1.hidden=NO;
         holiday2.hidden=YES;
         holiday1.hidden=YES;
+        timePicker.hidden=YES;
     }
 }
 -(IBAction)myButtonClicked:(id)sender{

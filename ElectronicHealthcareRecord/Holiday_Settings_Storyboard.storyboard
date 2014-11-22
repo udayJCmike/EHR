@@ -221,6 +221,7 @@
                         <outlet property="but3" destination="U6Z-YA-LE7" id="1vs-yN-Cji"/>
                         <outlet property="but4" destination="NFW-Zo-y0c" id="NRW-XT-Xb3"/>
                         <outlet property="cancel" destination="swj-EH-PRq" id="2nC-gi-E0I"/>
+                        <outlet property="chooseHolidays" destination="mNd-Lt-X7f" id="LK2-57-rFF"/>
                         <outlet property="holiday1" destination="BMN-xF-X4k" id="7as-XX-Zhg"/>
                         <outlet property="holiday2" destination="cWD-Lf-z0q" id="wS1-y9-P4t"/>
                         <outlet property="personalinfo" destination="j0v-7W-FCh" id="urf-O6-eg9"/>
