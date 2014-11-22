@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic)DPCalendarEvent * event;
 @property (strong, nonatomic)NSMutableArray *ListOfAppointments;
+@property (strong, nonatomic)NSMutableArray * ListOfAppointmentsForDoctor;
 @property (strong, nonatomic)NSMutableDictionary *ListOfappointment_status;
 @property (strong, nonatomic)NSMutableArray *ListOfHolidays;
 @end

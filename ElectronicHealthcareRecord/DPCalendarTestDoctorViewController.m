@@ -115,6 +115,8 @@
     //    [self.view addSubview:self.optionsButton];
     [self.view addSubview:self.createEventButton];
     [self.monthlyView removeFromSuperview];
+   // NSLog(@"Events in doctor %@",self.events);
+
     self.monthlyView = [[DPCalendarMonthlyDoctorView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) delegate:self];
     [self.view addSubview:self.monthlyView];
     
@@ -124,10 +126,11 @@
 
 - (void) generateData {
     delegate=AppDelegate;
-    self.events = @[].mutableCopy;
+    self.events = [[NSMutableArray alloc]init];
     self.iconEvents = @[].mutableCopy;
-    self.events=delegate.ListOfAppointments;
-    
+  //   NSLog(@"Events in generate data doctor Events= %@  delegate - %@",self.events, delegate.ListOfAppointments);
+    self.events=delegate.ListOfAppointmentsForDoctor;
+   
     
     //    NSDate *date = [[NSDate date] dateByAddingYears:0 months:0 days:0];
     //    UIImage *icon = [UIImage imageNamed:@"IconPubHol"];
@@ -309,7 +312,7 @@
     return YES;
 }
 
--(void)didSelectItemWithDate:(NSDate *)date {
+-(void)didSelectItemWithDateFromDoctor:(NSDate *)date {
     // NSLog(@"Select date %@ with \n events %@ \n and icon events %@", date, [self.monthlyView eventsForDay:date], [self.monthlyView iconEventsForDay:date]);
     response_date=date;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -355,7 +358,7 @@
             [alert show];
         }
     }
-    else if (![self.monthlyView eventsForDay:date]) {
+    else {
         isUpdating=FALSE;
         selected_date=[date dateByAddingYears:0 months:0 days:0];
         DPCalendarEvent *event1=[[DPCalendarEvent alloc]initWithTitle:@"" startTime:selected_date endTime:[self Get_EndDate:[date dateByAddingYears:0 months:0 days:1]] description:@"" colorIndex:1];
@@ -468,7 +471,7 @@
 
 
 #pragma mark - DPCalendarTestCreateEventViewControllerDelegate
--(void)eventCreated:(DPCalendarEvent *)event {
+-(void)eventCreatedFromDoctor:(DPCalendarEvent *)event {
     if (isUpdating) {
         [self.events replaceObjectAtIndex:IndexOfUpdatedEvent withObject:event];
         self.monthlyView.MultipletimeReloading=TRUE;

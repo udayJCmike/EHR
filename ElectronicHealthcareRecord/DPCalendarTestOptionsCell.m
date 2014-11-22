@@ -184,6 +184,7 @@ enum CellType{
 - (void) dateChanged:(UIDatePicker *)picker{
     self.date = picker.date;
     //    NSLog(@"date picked %@",picker.date);
+     self.event.startTime=[picker.date dateByAddingYears:0 months:0 days:0];
     [self.delegate cell:self valueChanged:[picker.date dateByAddingYears:0 months:0 days:0]];
 }
 

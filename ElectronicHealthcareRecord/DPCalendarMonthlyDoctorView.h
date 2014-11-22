@@ -52,7 +52,7 @@ extern NSString *const DPCalendarMonthlyViewAttributeMonthRowsDoctor; //A conven
 
 - (BOOL) shouldHighlightItemWithDate:(NSDate *)date;
 - (BOOL) shouldSelectItemWithDate:(NSDate *)date;
-- (void) didSelectItemWithDate:(NSDate *)date;
+- (void) didSelectItemWithDateFromDoctor:(NSDate *)date;
 - (void)didTapEvent:(DPCalendarEvent *)event onDate:(NSDate *)date;
 - (NSDictionary *) monthlyViewAttributes;
 

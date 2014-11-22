@@ -308,7 +308,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
     return singleMonthView;
 }
 
-- (void) reloadCurrentView {
+- (void) reloadCurrentDoctorView {
     UICollectionView *collectionView = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
     [collectionView reloadData];
     
@@ -455,7 +455,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
         UICollectionView *view = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
         [self scrollRectToVisible:view.frame animated:NO];
         [self.monthlyViewDelegate didScrollToMonth:[self.pagingMonths objectAtIndex:CURERNT_MONTH_VIEW_POSITION] firstDate:[self firstVisibleDateOfMonth:month] lastDate:[self lastVisibleDateOfMonth:month]];
-        [self reloadCurrentView];
+        [self reloadCurrentDoctorView];
         [self reloadPagingViews];
         if (complete) {
             complete();
@@ -522,7 +522,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
     
     UIView *view = [self.pagingViews objectAtIndex:CURERNT_MONTH_VIEW_POSITION];
     [self scrollRectToVisible:view.frame animated:NO];
-    [self reloadCurrentView];
+    [self reloadCurrentDoctorView];
     [self reloadPagingViews];
 }
 
@@ -723,8 +723,8 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
     
     self.selectedDate = [self dateForCollectionView:collectionView IndexPath:indexPath];
     if (self.MultipletimeReloading==FALSE) {
-        if ([self.monthlyViewDelegate respondsToSelector:@selector(didSelectItemWithDate:)]) {
-            return [self.monthlyViewDelegate didSelectItemWithDate:self.selectedDate];
+        if ([self.monthlyViewDelegate respondsToSelector:@selector(didSelectItemWithDateFromDoctor:)]) {
+            return [self.monthlyViewDelegate didSelectItemWithDateFromDoctor:self.selectedDate];
         }
     }
     else
@@ -887,14 +887,14 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
                  * Add that event to the corresponding date
                  *
                  *****************************************************************/
-                while ([date compare:endDate] != NSOrderedSame) {
+            //    while ([date compare:endDate] != NSOrderedSame) {
                     if ([eventsByDay objectForKey:date]) {
                         [((NSMutableArray *)[eventsByDay objectForKey:date]) addObject:event];
                     } else {
                         [eventsByDay setObject:@[event].mutableCopy forKey:date];
                     }
                     date = [date dateByAddingYears:0 months:0 days:1];
-                }
+              //  }
                 
                 NSMutableArray *otherEventsInTheSameDay = [eventsByDay objectForKey:startDate];
                 
@@ -925,7 +925,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             weakSelf.eventsForEachDay = eventsByDay.copy;
-            [weakSelf reloadCurrentView];
+            [weakSelf reloadCurrentDoctorView];
             if (complete) complete();
         }];
     }];
@@ -992,7 +992,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefaultDoctor
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             weakSelf.iconEventsForEachDay = eventsByDay.copy;
-            [weakSelf reloadCurrentView];
+            [weakSelf reloadCurrentDoctorView];
             if (complete) complete();
         }];
     }];

@@ -11,10 +11,12 @@
 @implementation ElectronicHealthcareRecordAppDelegate
 @synthesize event;
 @synthesize ListOfAppointments;
+@synthesize ListOfAppointmentsForDoctor;
 @synthesize ListOfappointment_status;
 @synthesize ListOfHolidays;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    ListOfAppointmentsForDoctor= [[NSMutableArray alloc]init];
     ListOfAppointments= [[NSMutableArray alloc]init];
     ListOfappointment_status=[[NSMutableDictionary alloc]init];
     ListOfHolidays= [[NSMutableArray alloc]init];
@@ -27,6 +29,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSArray *index=@[@"Available",@"Waiting",@"Full"];
+      NSArray *name=@[@"Allen",@"Joe",@"John"];
     // NSLog(@"%@", [formatter stringFromDate:[NSDate date]]);
     for (int i = 0; i < 10; i++)
     {
@@ -35,6 +38,13 @@
             
             event = [[DPCalendarEvent alloc] initWithTitle:@"Appointment" startTime:date endTime:[date dateByAddingYears:0 months:0 days:0] description:@"" colorIndex:2];
             [ListOfAppointments addObject:event];
+            
+        }
+        else
+        {
+            event = [[DPCalendarEvent alloc] initWithTitle:[name objectAtIndex:i%3] startTime:date endTime:[date dateByAddingYears:0 months:0 days:0] description:@"" colorIndex:2];
+            [ListOfAppointmentsForDoctor addObject:event];
+
         }
         
         ;

@@ -875,7 +875,7 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefault = 0; 
                 NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
                 NSDate *startDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:event.startTime]];
                 
-                NSDate *endDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:[event.endTime dateByAddingYears:0 months:0 days:1]]];
+       //         NSDate *endDate = [weakSelf.calendar dateFromComponents:[weakSelf.calendar components:preservedComponents fromDate:[event.endTime dateByAddingYears:0 months:0 days:1]]];
                 
                 NSDate *date = [startDate copy];
                 
@@ -884,14 +884,14 @@ static NSInteger const DPCalendarMonthlyViewAttributeStartDayOfWeekDefault = 0; 
                  * Add that event to the corresponding date
                  *
                  *****************************************************************/
-                while ([date compare:endDate] != NSOrderedSame) {
+//                while ([date compare:endDate] != NSOrderedSame) {
                     if ([eventsByDay objectForKey:date]) {
                         [((NSMutableArray *)[eventsByDay objectForKey:date]) addObject:event];
                     } else {
                         [eventsByDay setObject:@[event].mutableCopy forKey:date];
                     }
                     date = [date dateByAddingYears:0 months:0 days:1];
-                }
+//                }
                 
                 NSMutableArray *otherEventsInTheSameDay = [eventsByDay objectForKey:startDate];
                 

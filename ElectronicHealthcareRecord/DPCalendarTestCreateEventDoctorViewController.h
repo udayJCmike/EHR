@@ -11,7 +11,7 @@
 #define AppDelegate (ElectronicHealthcareRecordAppDelegate *)[[UIApplication sharedApplication] delegate]
 @protocol DPCalendarTestCreateEventDoctorViewControllerDelegate <NSObject>
 
-- (void) eventCreated:(DPCalendarEvent *)event;
+- (void) eventCreatedFromDoctor:(DPCalendarEvent *)event;
 
 @end
 

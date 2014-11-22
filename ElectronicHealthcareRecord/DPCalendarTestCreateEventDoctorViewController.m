@@ -147,13 +147,13 @@
         if([self.event.title length]>0)
         {
             NSLog(@"Event %@", self.event);
-            [self.delegate eventCreated:self.event];
+            [self.delegate eventCreatedFromDoctor:self.event];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
             status=0;
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Give title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Enter Patient Name." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
@@ -169,13 +169,13 @@
         if([self.event.title length]>0)
         {
             // NSLog(@"Event %@", self.event);
-            [self.delegate eventCreated:self.event];
+            [self.delegate eventCreatedFromDoctor:self.event];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
             status=0;
-            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Give title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"Info" message:@"Enter Patient Name" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
@@ -194,7 +194,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#define CELL_Name @"CELL_NAME"
+#define CELL_NAME @"CELL_NAME"
 #define CELL_TITLE @"CELL_TITLE"
 #define CELL_START_TIME @"CELL_START_TIME"
 #define CELL_END_TIME @"CELL_END_TIME"
@@ -225,7 +225,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            cell.identifier = CELL_Name;
+            cell.identifier = CELL_NAME;
             NSString *title_name= self.navigationController.title;
             if ([title_name isEqualToString:@"Create Appointment"]) {
                 cell.isReschedule=FALSE;
@@ -235,7 +235,7 @@
             }
             [cell setTitle:@"Patient Name"];
             
-            [cell setTextValue:self.event.title];
+            [cell setTextFieldValue:self.event.title];
         }
             break;
         
@@ -311,8 +311,8 @@
         self.event.startTime = value;
         
     }
-    else if ([identifier isEqualToString:CELL_Name]) {
-        //    NSLog(@"start time changed %@",value);
+    else if ([identifier isEqualToString:CELL_NAME]) {
+        
         self.event.title = value;
         
     }

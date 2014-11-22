@@ -123,7 +123,7 @@
     [self.monthlyView removeFromSuperview];
     self.monthlyView = [[DPCalendarMonthlyView alloc] initWithFrame:CGRectMake(0, 50, width, height - 50) delegate:self];
     [self.view addSubview:self.monthlyView];
-    
+    //    NSLog(@"Events in patient %@",self.events);
     [self.monthlyView setEvents:self.events complete:nil];
     // [self.monthlyView setIconEvents:self.iconEvents complete:nil];
 }
@@ -475,6 +475,7 @@
 
 #pragma mark - DPCalendarTestCreateEventViewControllerDelegate
 -(void)eventCreated:(DPCalendarEvent *)event {
+    
     if (isUpdating) {
         [self.events replaceObjectAtIndex:IndexOfUpdatedEvent withObject:event];
         self.monthlyView.MultipletimeReloading=TRUE;
@@ -486,6 +487,7 @@
           self.monthlyView.MultipletimeReloading=TRUE;
         [self.monthlyView setEvents:self.events complete:nil];
     }
+ 
 }
 
 

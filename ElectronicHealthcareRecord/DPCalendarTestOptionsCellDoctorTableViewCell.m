@@ -11,7 +11,8 @@ enum CellType{
     CellTypeTextField,
     CellTypeSwitch,
     CellTypeSlider,
-    CellTypeDate
+    CellTypeDate,
+    CellTypeTextView
 };
 
 
@@ -48,13 +49,20 @@ enum CellType{
         //The rounded corner part, where you specify your view's corner radius:
         self.valueTextField.layer.cornerRadius = 5;
         self.valueTextField.clipsToBounds = YES;
+        
+        [self.nameTextField.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+        [self.nameTextField.layer setBorderWidth:1.0];
+        //The rounded corner part, where you specify your view's corner radius:
+        self.nameTextField.layer.cornerRadius = 5;
+        self.nameTextField.clipsToBounds = YES;
+        
         self.timeArray=[NSMutableArray new];
         self.timeArray=[[NSMutableArray alloc]initWithObjects:@"00:00",@"00:15",@"00:30",@"00:45",@"01:00",@"01:15",@"01:30",@"01:45",@"02:00",@"02:15",@"02:30",@"02:45",@"03:00",@"03:15",@"03:30",@"03:45",@"04:00",@"04:15",@"04:30",@"04:45",@"05:00",@"05:15",@"05:30",@"05:45",@"06:00",@"06:15",@"06:30",@"06:45",@"07:00",@"07:15",@"07:30",@"07:45",@"08:00",@"08:15",@"08:30",@"08:45",@"09:00",@"09:15",@"09:30",@"09:45",@"10:00",@"10:15",@"10:30",@"10:45",@"11:00",@"11:15",@"11:30",@"11:45",@"12:00",@"12:15",@"12:30",@"12:45",@"13:00",@"13:15",@"13:30",@"13:45",@"14:00",@"14:15",@"14:30",@"14:45",@"15:00",@"15:15",@"15:30",@"15:45",@"16:00",@"16:15",@"16:30",@"16:45",@"17:00",@"17:15",@"17:30",@"17:45",@"18:00",nil];
         [self.timePicker setDataSource:self];
         [self.timePicker setDelegate:self];
         self.timePicker.showsSelectionIndicator = YES;
        
-        
+           [self addSubview:self.nameTextField];
         [self addSubview:self.nameLabel];
         [self addSubview:self.valueTextField];
         [self addSubview:self.dateLabel];
@@ -62,6 +70,7 @@ enum CellType{
     return self;
 }
 -(void) textFieldDidChange:(UITextField *)textField {
+  
     [self.delegate cell:self valueChanged:textField.text];
 }
 //Columns in picker views
@@ -101,6 +110,7 @@ enum CellType{
 - (void) hideViews {
     self.valueTextField.hidden = YES;
     self.dateLabel.hidden = YES;
+    self.nameTextField.hidden=YES;
 }
 
 - (void) dateLabelTapped: (UITapGestureRecognizer *)tapGesture {
@@ -173,6 +183,7 @@ enum CellType{
 - (void) dateChanged:(UIDatePicker *)picker{
     self.date = picker.date;
     //    NSLog(@"date picked %@",picker.date);
+     self.event.startTime=[picker.date dateByAddingYears:0 months:0 days:0];
     [self.delegate cell:self valueChanged:[picker.date dateByAddingYears:0 months:0 days:0]];
 }
 
@@ -219,9 +230,14 @@ enum CellType{
     [self hideViews];
     self.valueTextField.hidden = NO;
     self.valueTextField.text = text;
+    self.cellType = CellTypeTextView;
+}
+- (void) setTextFieldValue:(NSString *)text {
+    [self hideViews];
+    self.nameTextField.hidden = NO;
+    self.nameTextField.text = text;
     self.cellType = CellTypeTextField;
 }
-
 - (void) setDate:(NSDate *)date
 {
     if([self.identifier isEqualToString:@"CELL_START_TIME"])
@@ -278,12 +294,20 @@ enum CellType{
         val.origin.y+=5;
         self.valueTextField.frame=val;
     }
+    if([self.identifier isEqualToString:@"CELL_NAME"])
+    {
+        CGRect val=valueFrame;
+        val.size.width-=10;
+        val.size.height-=10;
+        val.origin.y+=5;
+        self.nameTextField.frame=val;
+    }
    
 //        CGRect val=valueFrame;
 //        val.size.width-=30;
 //        val.size.height-=30;
     
-        self.nameTextField.frame=valueFrame;
+    
     
     
    

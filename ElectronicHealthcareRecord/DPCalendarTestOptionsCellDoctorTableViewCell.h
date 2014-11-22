@@ -23,6 +23,7 @@
      UITapGestureRecognizer *tap ;
 }
 - (void) setTitle:(NSString *)title;
+@property (nonatomic, strong)NSString *textFieldValue ;
 @property (nonatomic, strong) DPCalendarEvent *event;
 @property (nonatomic, strong) NSString *textValue;
 @property (nonatomic, strong) NSDate *date;
