@@ -30,6 +30,7 @@
 		0D69BD411A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD401A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m */; };
 		0D69BD441A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */; };
 		78C7DBE11A83A0610039C996 /* 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C7DBE01A83A0610039C996 /* 20.png */; };
+		78C7DBE71A83A3BB0039C996 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78C7DBE61A83A3BB0039C996 /* aaa.jpg */; };
 		84010BD61A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */; };
 		84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */; };
 		84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */; };
@@ -311,6 +312,7 @@
 		78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectronicHealthcareRecordTableViewCell.m; sourceTree = "<group>"; };
 		78C7DBDE1A839E750039C996 /* 15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15.png; sourceTree = "<group>"; };
 		78C7DBE01A83A0610039C996 /* 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 20.png; sourceTree = "<group>"; };
+		78C7DBE61A83A3BB0039C996 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
 		84010BCF1A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_Report_RequestViewController.h; sourceTree = "<group>"; };
 		84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Detail_Report_RequestViewController.m; sourceTree = "<group>"; };
 		84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clinic_Report_Request_Storyboard.storyboard; sourceTree = "<group>"; };
@@ -1407,6 +1409,7 @@
 		84589EFE1A11F2CC00612BBA = {
 			isa = PBXGroup;
 			children = (
+				78C7DBE61A83A3BB0039C996 /* aaa.jpg */,
 				78C7DBD61A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.h */,
 				78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */,
 				0D67CA291A1F4D3D006F5516 /* MultipleSelectionPickerView */,
@@ -1893,6 +1896,7 @@
 				84589F401A11FA1E00612BBA /* Dashboard_Storyboard.storyboard in Resources */,
 				ECBA10941A1CAE0500E4AB41 /* IconCamera@2x.png in Resources */,
 				841084741A1344BF00652C08 /* DailyCalendar.png in Resources */,
+				78C7DBE71A83A3BB0039C996 /* aaa.jpg in Resources */,
 				841084721A1344BF00652C08 /* blackCircle.png in Resources */,
 				8442B93B1A14EA7B00785A13 /* x-ray1.jpg in Resources */,
 				8442B9161A149C6800785A13 /* super_admin.png in Resources */,
