@@ -29,6 +29,7 @@
 		0D69BD3E1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD3D1A1E2A260047A60B /* DPCalendarMonthlyCellDoctorCollectionViewCell.m */; };
 		0D69BD411A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD401A1E2A760047A60B /* DPCalendarMonthlySingleMonthCellDoctor.m */; };
 		0D69BD441A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */; };
+		78C7DBE11A83A0610039C996 /* 20.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C7DBE01A83A0610039C996 /* 20.png */; };
 		84010BD61A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */; };
 		84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */; };
 		84010BD81A1C99D2009996A4 /* Clinic_Report_RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84010BD31A1C99D2009996A4 /* Clinic_Report_RequestViewController.m */; };
@@ -308,8 +309,8 @@
 		0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlyWeekdayCellDoctor.m; sourceTree = "<group>"; };
 		78C7DBD61A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectronicHealthcareRecordTableViewCell.h; sourceTree = "<group>"; };
 		78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectronicHealthcareRecordTableViewCell.m; sourceTree = "<group>"; };
-		78C7DBDA1A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectronicHealthcareRecordassaTableViewCell.m; sourceTree = "<group>"; };
 		78C7DBDE1A839E750039C996 /* 15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15.png; sourceTree = "<group>"; };
+		78C7DBE01A83A0610039C996 /* 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 20.png; sourceTree = "<group>"; };
 		84010BCF1A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_Report_RequestViewController.h; sourceTree = "<group>"; };
 		84010BD01A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic_Detail_Report_RequestViewController.m; sourceTree = "<group>"; };
 		84010BD11A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clinic_Report_Request_Storyboard.storyboard; sourceTree = "<group>"; };
@@ -1406,7 +1407,6 @@
 		84589EFE1A11F2CC00612BBA = {
 			isa = PBXGroup;
 			children = (
-				78C7DBDA1A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.m */,
 				78C7DBD61A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.h */,
 				78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */,
 				0D67CA291A1F4D3D006F5516 /* MultipleSelectionPickerView */,
@@ -1661,6 +1661,7 @@
 		84F10A2C1A1CCD4F00D5EE22 /* ClinicHolidaySettings */ = {
 			isa = PBXGroup;
 			children = (
+				78C7DBE01A83A0610039C996 /* 20.png */,
 				84F10A2F1A1CCE6100D5EE22 /* Holiday_Settings_Storyboard.storyboard */,
 				84F10A301A1CCE6100D5EE22 /* Holiday_SettingViewController.h */,
 				84F10A311A1CCE6100D5EE22 /* Holiday_SettingViewController.m */,
@@ -1895,6 +1896,7 @@
 				841084721A1344BF00652C08 /* blackCircle.png in Resources */,
 				8442B93B1A14EA7B00785A13 /* x-ray1.jpg in Resources */,
 				8442B9161A149C6800785A13 /* super_admin.png in Resources */,
+				78C7DBE11A83A0610039C996 /* 20.png in Resources */,
 				ECBA10971A1CAE0500E4AB41 /* IconPubHol.png in Resources */,
 				0D67CA431A1F56C9006F5516 /* frame_middle@2x.png in Resources */,
 				8429E7381A19D7F7003DBF5D /* DoctorDashboard.storyboard in Resources */,
