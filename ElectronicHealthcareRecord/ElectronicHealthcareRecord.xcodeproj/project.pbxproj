@@ -1835,6 +1835,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C7DBDD1A839DCB0039C996 /* 14.png in Resources */,
 				0D69BD261A1E0C7B0047A60B /* close.png in Resources */,
 				84010BD71A1C99D2009996A4 /* Clinic_Report_Request_Storyboard.storyboard in Resources */,
 				8429E73A1A19DA58003DBF5D /* doctorprofile.jpg in Resources */,
@@ -1994,7 +1995,6 @@
 				841084F61A1348C600652C08 /* FFHourAndMinLabel.m in Sources */,
 				841084BC1A1346EE00652C08 /* FFYearCollectionViewFlowLayout.m in Sources */,
 				841084A81A13462900652C08 /* UIColor+FFMoreColors.m in Sources */,
-				78C7DBD81A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m in Sources */,
 				8442B91F1A14B5E100785A13 /* SVSegmentedThumb.m in Sources */,
 				0D69BD441A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m in Sources */,
 				84010C0F1A1C9B64009996A4 /* Clinic_Ask_UsViewController.m in Sources */,
@@ -2055,7 +2055,6 @@
 				8442B9351A14E1C700785A13 /* ViewMedicalRecordsTableViewCell.m in Sources */,
 				841084C81A13471800652C08 /* FFMonthCollectionViewForYearCell.m in Sources */,
 				ECBA10A71A1CAE4200E4AB41 /* DPCalendarMonthlySingleMonthViewLayout.m in Sources */,
-				78C7DBDB1A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.m in Sources */,
 				ECBA107D1A1CADCE00E4AB41 /* NSString+DP.m in Sources */,
 				84010C0D1A1C9B64009996A4 /* Clinic_Ask_Us_DetailViewController.m in Sources */,
 				841084B01A13463E00652C08 /* FFEvent.m in Sources */,
