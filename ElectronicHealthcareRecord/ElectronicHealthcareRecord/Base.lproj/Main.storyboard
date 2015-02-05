@@ -289,7 +289,7 @@
                                 <color key="backgroundColor" white="0.7722969891" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="14.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y98-fA-IZ9">
+                            <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="15.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y98-fA-IZ9">
                                 <rect key="frame" x="236" y="793" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -448,7 +448,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="14.png" width="1920" height="1080"/>
+        <image name="15.png" width="1920" height="1080"/>
         <image name="background.png" width="768" height="1024"/>
         <image name="checkBox.png" width="20" height="20"/>
         <image name="fb_signin.png" width="470" height="85"/>
