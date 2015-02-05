@@ -308,7 +308,6 @@
 		0D69BD431A1E2A980047A60B /* DPCalendarMonthlyWeekdayCellDoctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCalendarMonthlyWeekdayCellDoctor.m; sourceTree = "<group>"; };
 		78C7DBD61A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectronicHealthcareRecordTableViewCell.h; sourceTree = "<group>"; };
 		78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectronicHealthcareRecordTableViewCell.m; sourceTree = "<group>"; };
-		78C7DBD91A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectronicHealthcareRecordassaTableViewCell.h; sourceTree = "<group>"; };
 		78C7DBDA1A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectronicHealthcareRecordassaTableViewCell.m; sourceTree = "<group>"; };
 		78C7DBDE1A839E750039C996 /* 15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 15.png; sourceTree = "<group>"; };
 		84010BCF1A1C99D2009996A4 /* Clinic_Detail_Report_RequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic_Detail_Report_RequestViewController.h; sourceTree = "<group>"; };
@@ -1407,7 +1406,6 @@
 		84589EFE1A11F2CC00612BBA = {
 			isa = PBXGroup;
 			children = (
-				78C7DBD91A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.h */,
 				78C7DBDA1A839B080039C996 /* ElectronicHealthcareRecordassaTableViewCell.m */,
 				78C7DBD61A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.h */,
 				78C7DBD71A839A480039C996 /* ElectronicHealthcareRecordTableViewCell.m */,
@@ -1847,7 +1845,6 @@
 				8429E72A1A19C2F4003DBF5D /* month.png in Resources */,
 				ECBA10951A1CAE0500E4AB41 /* IconDateGrey.png in Resources */,
 				849E2D531A1B84BB00ED94C3 /* DoctorHoliday.storyboard in Resources */,
-				78C7DBDF1A839E750039C996 /* 15.png in Resources */,
 				8442B9251A14C70500785A13 /* background.png in Resources */,
 				849C0E7A1A1B661400F4461E /* DoctorAppointments.storyboard in Resources */,
 				84589F231A11F2CD00612BBA /* Images.xcassets in Resources */,
