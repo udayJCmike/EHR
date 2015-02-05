@@ -312,6 +312,36 @@
             </objects>
             <point key="canvasLocation" x="522" y="-460"/>
         </scene>
+        <!--Testing View Controller-->
+        <scene sceneID="slS-Ys-Km0">
+            <objects>
+                <viewController id="fbU-QX-1j2" customClass="testingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U5j-OG-xFp"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ZP-zS-5fe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FfJ-3g-StP">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwM-ho-cTZ">
+                                <rect key="frame" x="193" y="599" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="LwM-ho-cTZ" id="c0E-iJ-RdC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5PQ-O1-t2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="-782"/>
+        </scene>
         <!--Forgotpassword View Controller - Signup-->
         <scene sceneID="gSV-SV-9cl">
             <objects>
